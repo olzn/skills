@@ -5,6 +5,7 @@ Personal agent skills for design and product work.
 ## Available skills
 
 - [`paper-prototype`](paper-prototype/) - Create Paper-first UI prototype directions, especially after `grill-with-docs` has settled product and domain decisions. Use it to turn open interface questions into editable Paper artboards before committing to implementation.
+- [`surface-details`](surface-details/) - Catch browser quirks, focus handling, touch issues, layout shift, and interface polish details that make web UI feel professional.
 
 ## Using with Codex or pi
 
