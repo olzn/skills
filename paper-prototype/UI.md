@@ -1,10 +1,10 @@
-# UI Prototype — Paper-first
+# UI Prototype: Paper First
 
-Use this when the question is **"what should this look or feel like?"**
+Use this when the question is **"what should this interface look, feel, or flow like?"**
 
 Default to Paper via MCP before writing code. The canvas is the shared design surface: the user can inspect, rearrange, edit, delete, or combine ideas directly before anything is committed to the codebase.
 
-If the question is about logic/state rather than interface direction, use [LOGIC.md](LOGIC.md). If the question depends on runtime behaviour, use a small code spike instead.
+This skill is most useful after `grill-with-docs`: product and domain decisions are settled enough that the remaining work is to explore interface direction.
 
 ## When this is the right shape
 
@@ -14,18 +14,22 @@ If the question is about logic/state rather than interface direction, use [LOGIC
 - "Can we mock this up first?"
 - Any time coding a throwaway route would prematurely lock the work into implementation details.
 
-## When to prototype in code instead
+## When Paper is the wrong shape
 
-Use code only when the question cannot be answered well on the Paper canvas, for example:
+Stop and say so when the question cannot be answered well on the Paper canvas, for example:
 
+- business logic or state modelling
+- persistence semantics
 - live data density or loading behaviour
 - real routing/navigation constraints
 - responsive behaviour across breakpoints
 - complex local state
+- keyboard behaviour
 - animation timing or gesture feel
+- component API ergonomics
 - implementation feasibility inside the existing component system
 
-Even then, consider starting in Paper for visual direction, then moving the chosen direction into a code spike.
+Recommend a logic prototype or code spike instead. Do not silently fall back to code for a UI-direction prompt unless the user approves.
 
 ## Process
 
@@ -40,9 +44,28 @@ Before using other Paper tools in a session:
 
 If Paper MCP is not available, stop and tell the user. Do not silently fall back to code for a UI-direction question unless they approve.
 
-### 2. State the question
+### 2. Align with settled decisions
 
-Write the prototype question in one sentence.
+If this follows `grill-with-docs`, read the relevant `CONTEXT.md` and ADRs before creating anything. Extract:
+
+- canonical terms
+- user roles
+- key states
+- constraints
+- non-negotiable product decisions
+- open design questions
+
+Use settled terms and constraints in the artboards. Do not re-litigate the domain model.
+
+### 3. State the prototype contract
+
+Write the contract before touching Paper:
+
+- **Question:** one sentence.
+- **Already decided:** the constraints that must carry through.
+- **Still open:** what the variants are allowed to disagree about.
+- **Fidelity:** sketch, structural, visual, interactive, or implementation-adjacent.
+- **Exit condition:** what answer lets us stop.
 
 Good:
 
@@ -52,11 +75,17 @@ Bad:
 
 > "Make the settings page better."
 
-If this follows `grill-with-docs`, use the canonical terms from `CONTEXT.md`/ADRs and do not re-litigate already settled domain decisions.
+### 4. Propose directions before drawing
 
-### 3. Create 2–3 distinct directions
+Name the intended directions before creating them so the user can steer. Default to these three:
 
-Default to **3 directions**. Use 2 for small questions. Avoid more than 5.
+- **System-native:** closest to existing product patterns and component constraints.
+- **Decision-forward:** organised around the user's primary decision or commitment.
+- **High-leverage divergence:** a meaningfully different structure, flow, or interaction model.
+
+Use 2 directions for small questions. Avoid more than 5.
+
+### 5. Create distinct Paper directions
 
 Each direction should be structurally different, not merely reskinned:
 
@@ -71,11 +100,11 @@ Three card grids with different colours is not a prototype.
 
 Use artboards or clearly named frames for each direction. Name them by the idea, not just A/B/C, for example:
 
-- `A — Confirmation-first`
-- `B — Inline control panel`
-- `C — Review and commit`
+- `A: Confirmation first`
+- `B: Inline control panel`
+- `C: Review and commit`
 
-### 4. Work incrementally on the canvas
+### 6. Work incrementally on the canvas
 
 Use Paper MCP as a design tool, not as a one-shot renderer.
 
@@ -83,8 +112,9 @@ Use Paper MCP as a design tool, not as a one-shot renderer.
 - Use `duplicate_nodes`, `update_styles`, and `set_text_content` when faster than rewriting.
 - Keep variants editable and understandable in the layer tree.
 - Do not over-polish losing directions; make them good enough to judge.
+- Keep prototype frames labelled as explorations, not implementation-ready UI.
 
-After each meaningful section or direction, call `get_screenshot` and check:
+After each direction or substantial change, call `get_screenshot` and check:
 
 - spacing
 - typography
@@ -95,27 +125,57 @@ After each meaningful section or direction, call `get_screenshot` and check:
 
 Fix obvious issues before moving on.
 
-### 5. Let the user edit directly
+### 7. Preserve user control
 
 The user may change the canvas manually. Treat those edits as design feedback, not interference.
 
 If the user combines parts of multiple directions, help consolidate the emerging winner into a clearer final artboard/frame.
 
-### 6. Capture the answer
+Do not declare a winning direction unless the user chooses one or gives clear instruction.
+
+### 8. Capture the answer
 
 When a direction wins, record:
 
 - which direction won
 - what parts were kept or rejected
 - why it answered the question
+- interaction/state questions still unresolved
 - what should be implemented next
 
-If the user wants code next, use Paper MCP tools like `get_jsx`, `get_computed_styles`, `get_tree_summary`, screenshots, and node inspection to translate the chosen direction. Do not infer exact values from screenshots alone.
+Label the winning frame and add a short decision note on the Paper canvas. If the decision affects durable product or domain understanding, update `CONTEXT.md` or an ADR separately.
+
+### 9. Translate only when asked
+
+If the user wants code next, first create a design-engineering translation note:
+
+- existing components that map to the direction
+- new components likely needed
+- values that should become tokens
+- details that are visual only
+- details that affect behaviour or state
+- simplifications acceptable in production
+- what should be prototyped in code before implementation
+
+Use Paper MCP tools like `get_jsx`, `get_computed_styles`, `get_tree_summary`, screenshots, and node inspection to translate the chosen direction. Do not infer exact values from screenshots alone.
+
+When validated behaviour is absorbed into production code, add normal tests around the production implementation. Do not test the throwaway Paper prototype.
+
+## Stop Conditions
+
+Stop prototyping when:
+
+- the question is answered
+- variants are converging
+- the user has made a clear canvas edit that establishes direction
+- the remaining uncertainty is implementation rather than design
+- the prototype is becoming production work
 
 ## Anti-patterns
 
 - **Starting with a throwaway route for a visual question.** That is implementation gravity too early.
 - **Variants that differ only in colour or copy.** Real variants disagree about structure or flow.
 - **Ignoring the domain language from grilling.** Pretty but semantically wrong is still wrong.
+- **Choosing a winner for the user.** The agent proposes directions. The user owns the design call.
 - **One giant HTML dump.** It is harder to review, edit, and repair.
-- **Promoting prototype output directly to production.** Treat Paper and prototype code as evidence, not final implementation.
+- **Promoting prototype output directly to production.** Treat Paper as evidence, not final implementation.

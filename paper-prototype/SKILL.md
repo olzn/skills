@@ -1,49 +1,64 @@
 ---
 name: paper-prototype
-description: Build a throwaway prototype to answer one question before committing to a direction. Uses Paper via MCP first for UI/design questions, a tiny terminal app for logic/state questions, and code only when runtime behaviour is the thing being tested. Use when the user wants to prototype, sanity-check a data model or state machine, explore UI directions, mock up a flow, or says "prototype this", "try a few designs", "let me play with it".
+description: Create Paper-first UI prototype directions, especially after grill-with-docs has settled product and domain decisions. Use when the user wants to explore interface directions, mock up a flow, compare visual or interaction approaches, turn product decisions into editable Paper artboards, or says "prototype this", "try a few designs", "explore directions", or "let me play with it". Do not use for business-logic or state-machine prototyping unless the user explicitly asks for Paper output.
 ---
 
 # Paper Prototype
 
-A prototype is **throwaway work that answers a question**. The question decides the shape.
+Paper prototypes are **throwaway UI explorations that answer one design question**.
 
-## Pick a branch
+The main job is to turn settled product/domain decisions into 2 to 3 editable Paper directions so the user can make the design call before implementation.
 
-Identify which question is being answered — from the user's prompt, the surrounding code, or by asking if the user is around:
+## Default Workflow
 
-- **"Does this logic / state model feel right?"** → [LOGIC.md](LOGIC.md). Build a tiny interactive terminal app that pushes the state machine through cases that are hard to reason about on paper.
-- **"What should this look or feel like?"** → [UI.md](UI.md). Default to Paper via MCP: create 2–3 distinct artboard directions on the canvas before writing code.
-- **"Will this work in the actual app/runtime?"** → make a minimal code spike near the real surface. Use this only when the question depends on live data, routing, responsiveness, complex state, animation, or implementation feasibility.
+Use [UI.md](UI.md) for the full workflow.
 
-Getting this wrong wastes the prototype. If ambiguous and the user is not reachable, default to Paper for visual/interface uncertainty, terminal logic for domain/state uncertainty, and code only for runtime uncertainty. State the assumption before prototyping.
+Start in Paper when the open question is about:
 
-## If this follows grill-with-docs
+- layout or information hierarchy
+- flow shape
+- visual framing
+- density
+- affordances
+- how product decisions should appear in the interface
 
-Before prototyping, preserve the decisions already made:
+Do not jump to code for a UI-direction question. The canvas is the shared decision surface.
+
+## Post-Grilling Gate
+
+When this follows `grill-with-docs`, preserve the decisions already made before touching Paper:
 
 1. Read the relevant `CONTEXT.md` and ADRs.
-2. Use the project's canonical terms in the prototype.
-3. Do not silently redefine domain boundaries that were already resolved.
-4. Prototype the remaining product/design question, not the whole domain model again.
+2. Extract canonical terms, user roles, key states, constraints, non-negotiable product decisions, and open design questions.
+3. Use those terms and constraints in the prototype.
+4. Prototype only the remaining interface question. Do not re-litigate the product model or silently redefine domain boundaries.
 
-Keep this lightweight. This is context alignment, not a second grilling session.
+Keep this lightweight. This is alignment, not a second grilling session.
 
-## Rules that apply to all prototypes
+## Prototype Contract
 
-1. **One question.** Write the question down before starting. If there are multiple questions, pick the one that blocks progress most.
-2. **Throwaway from day one.** Name or place the artifact so it is obviously a prototype, not production.
-3. **No persistence by default.** State lives in memory or on the Paper canvas. Persistence is only included if persistence is the thing being tested.
-4. **Skip production polish.** No tests, no abstractions, no generalized architecture unless the prototype specifically tests architecture.
-5. **Surface the state or direction.** Logic prototypes show state after every action. UI prototypes show multiple visible directions side-by-side or as clear variants.
-6. **Capture the answer.** When the prototype has answered its question, record the decision somewhere durable: notes, issue, ADR, commit message, or nearby `NOTES.md`.
-7. **Delete, absorb, or leave intentionally.** Do not leave stale prototype code in the repo. Paper artboards can remain as design history if useful, but mark the chosen direction clearly.
+Before creating artboards, state:
+
+- **Question:** what are we trying to learn?
+- **Medium:** Paper by default.
+- **Fidelity:** sketch, structural, visual, interactive, or implementation-adjacent.
+- **Exit condition:** what answer lets us stop?
+
+If the remaining uncertainty is business logic, state modelling, persistence, live data, routing, responsiveness, animation feel, keyboard behaviour, component API ergonomics, or implementation feasibility, say so directly. Recommend the appropriate prototype shape instead of forcing Paper to answer a question it cannot answer.
+
+## User Control
+
+The agent proposes directions. The user owns the design decision.
+
+Do not collapse variants into a final direction unless the user chooses one or gives clear instruction. If the user edits the Paper canvas, treat those edits as design feedback and consolidate around them.
 
 ## When done
 
-The answer is the only thing worth keeping from a prototype. Summarize:
+The answer is the only thing worth keeping from a prototype. Summarise:
 
 - the question
-- the chosen direction / learned constraint
+- the chosen direction or remaining uncertainty
+- what was kept and rejected
 - what should happen next
 
-If the user is around, confirm the answer with them. If not, leave a concise note so the next pass can either delete the prototype or fold the validated decision into real work.
+Label the winning Paper frame and add a concise decision note on the canvas. If the work affects durable product/domain decisions, update `CONTEXT.md` or an ADR separately.
