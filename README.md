@@ -5,20 +5,18 @@ Personal agent skills for design and product work.
 ## Repository Structure
 
 ```text
-skills/
-├── skills/
-│   └── paper-prototype/
-└── suites/
-    └── ui-craft/
-        ├── install.sh
-        ├── scripts/
-        ├── ui-craft/
-        ├── surface/
-        └── system/
+olzn/skills/
+├── skills/paper-prototype/
+└── suites/ui-craft/
+    ├── install.sh
+    ├── scripts/
+    ├── ui-craft/
+    ├── surface/
+    └── system/
 ```
 
-- [`skills/`](skills/) contains independently installable single skills.
-- [`suites/`](suites/) contains larger composed skill systems.
+- [`skills/paper-prototype/`](skills/paper-prototype/) is an independently installable single skill.
+- [`suites/ui-craft/`](suites/ui-craft/) is a larger composed skill system.
 
 ## Standalone Skills
 
@@ -69,7 +67,7 @@ Or clone this repository, then add it to pi settings:
 
 ```json
 {
-  "skills": ["/path/to/skills/skills"]
+  "skills": ["/path/to/skills/skills/paper-prototype"]
 }
 ```
 
