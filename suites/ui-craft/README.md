@@ -1,0 +1,270 @@
+# UI Craft
+
+UI Craft is a coordinator skill plus two domain suites for building web interfaces with stronger structure, clearer naming, and better surface quality.
+
+It contains:
+
+- **ui-craft**: the agent-facing coordinator skill for routing broad UI tasks and applying suite best practices.
+- **surface**: the domain suite for how interfaces look, read, move, respond, adapt to platform constraints, and feel in use.
+- **system**: the domain suite for what interface parts are made from, what they are called, and how they fit into a reusable system.
+
+The suite is designed for Codex, Claude Code, and other agents that can read `SKILL.md` files with YAML frontmatter. Examples often use React, Tailwind, Radix, Base UI, shadcn/ui, and Motion because those stacks are common in agent-built web UI; treat them as examples or preferred defaults when already present, not as automatic dependencies.
+
+---
+
+## Key Repository Structure
+
+```text
+ui-craft/
+├── README.md
+├── install.sh
+├── scripts/
+│   └── validate.sh
+├── ui-craft/
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   ├── learnings.md
+│   └── references/
+├── surface/
+│   ├── README.md
+│   ├── accessibility.md
+│   ├── composition.md
+│   ├── design-philosophy.md
+│   ├── quality.md
+│   ├── surface-motion/
+│   ├── surface-interaction/
+│   ├── surface-typography/
+│   ├── surface-copy/
+│   ├── surface-colour/
+│   └── surface-details/
+└── system/
+    ├── README.md
+    ├── system-tokens/
+    ├── system-naming/
+    ├── system-components/
+    └── system-patterns/
+```
+
+Every skill folder contains:
+
+- `SKILL.md`: the skill trigger metadata and agent instructions.
+- `agents/openai.yaml`: UI metadata for OpenAI skill clients.
+- `learnings.md`: accumulated local edge cases and practical findings. The installer preserves installed learnings across updates.
+- `references/`: detailed guidance loaded only when needed. Shared references are copied into each skill that uses them so installed skills are self-contained.
+
+---
+
+## Coordinator Skill
+
+- **ui-craft**: routes broad UI tasks to the right domain skills, applies suite-level best practices, and keeps agents from loading every skill by default.
+
+## The Ten Domain Skills
+
+### Surface
+
+- **surface-motion**: animation implementation, easing, timing, transitions, exits, entrances, and motion polish.
+- **surface-interaction**: gesture intent, spatial logic, frequency calibration, drag behaviour, and whether something should animate.
+- **surface-typography**: type scales, font loading, OpenType features, rhythm, wrapping, and rendering.
+- **surface-copy**: interface copy, microcopy, errors, empty states, onboarding, tooltips, and UX writing.
+- **surface-colour**: OKLCH palettes, semantic colours, contrast, dark mode, colour blindness, and theme mapping.
+- **surface-details**: browser quirks, input details, touch behaviour, focus handling, performance micro-details, and visual polish.
+
+### System
+
+- **system-tokens**: design token architecture, foundation scales, semantic mappings, and theming.
+- **system-naming**: labels, commands, variables, classes, tokens, icons, components, features, products, and UI terminology.
+- **system-components**: reusable component APIs, variants, composition, state coverage, and icon conventions.
+- **system-patterns**: forms, navigation, tables, feedback, layouts, and larger product patterns.
+
+---
+
+## When To Use UI Craft
+
+Use UI Craft when an agent is building, reviewing, or refactoring web interface work where quality depends on design judgement as much as code correctness.
+
+Good fits:
+
+- Building a new app screen, product feature, settings page, dashboard, form, table, command menu, modal, or navigation structure.
+- Creating or auditing a design system, token architecture, component library, or shared UI vocabulary.
+- Reviewing frontend work for visual polish, accessibility, motion, interaction behaviour, naming consistency, and production readiness.
+- Turning a rough implementation into something coherent, usable, and shippable.
+- Debugging browser-specific interface problems such as iOS input zoom, sticky hover, scroll lock, focus return, layout shift, or animation jank.
+
+Poor fits:
+
+- Backend-only work with no user interface.
+- Pure data modelling, infrastructure, deployment, or API design.
+- Brand strategy, marketing naming, or product positioning without an interface or design-system surface.
+- Native mobile interface work where web platform rules do not apply.
+
+---
+
+## Best Practices
+
+Use the narrowest relevant skill first. If you need a button API, start with `system-components`, not the whole suite. If you need the button label, use `system-naming`. If the button feels visually off, use `surface-details` or `surface-motion`.
+
+Start with structure, then refine the surface. For new work, the usual order is:
+
+```text
+system-naming -> system-tokens -> surface-typography/surface-colour -> system-components -> system-patterns -> surface-copy -> surface-details/surface-interaction/surface-motion
+```
+
+For existing UI, reverse the order when the structure already exists:
+
+```text
+surface-details -> surface-copy -> surface-interaction -> surface-motion -> surface-typography -> surface-colour -> system-components
+```
+
+Do not invoke every skill by default. The suite works best when the lead skill is clear and supporting skills are pulled in only for their specific domain.
+
+When using `ui-craft`, expect a compact route: classify the task, choose one lead skill, add supporting skills only for owned decisions, then stop once the relevant domains are covered.
+
+Use `surface/composition.md` for repository-level reading, or the local `references/composition.md` copy inside an installed skill. It defines common sequences for new project setup, component work, page work, audits, accessibility reviews, visual polish passes, and quality passes.
+
+Use `surface/quality.md` for repository-level reading, or the local `references/quality.md` copy inside an installed skill, for quality, craft, papercut, entropy, and "why does this feel bad?" prompts. It maps quality signals to existing skills rather than creating a separate quality skill.
+
+Keep `learnings.md` useful. When a project-specific browser quirk, library behaviour, or implementation edge case appears, add a short finding to the relevant installed skill's `learnings.md`. These notes are local runtime learnings and are preserved by the installer.
+
+Treat references as optional depth. The `references/` files are for detailed recipes and audits, not material that needs to be loaded for every task.
+
+---
+
+## Skill Selection
+
+| Task | Lead skill | Also check |
+|---|---|---|
+| Name a feature, command, button, token, or component | `system-naming` | Relevant domain skill |
+| Write or revise explanatory UX text | `surface-copy` | `system-naming` for terms |
+| Define spacing, colour semantics, radius, shadow, or theme mappings | `system-tokens` | `surface-colour`, `surface-typography` |
+| Build a reusable component | `system-components` | `system-naming`, `system-tokens`, `surface-details` |
+| Design a form, table, navigation, feedback system, or page layout | `system-patterns` | `system-components`, `surface-details` |
+| Decide whether something should animate or how a gesture should behave | `surface-interaction` | `surface-motion` |
+| Implement easing, timing, transitions, entrances, exits, or icon swaps | `surface-motion` | `surface-interaction`, `surface-details` |
+| Set up type scale, font loading, wrapping, rhythm, or OpenType features | `surface-typography` | `system-tokens` |
+| Build palettes, contrast, dark mode, or colour-blind-safe states | `surface-colour` | `system-tokens` |
+| Polish browser details, focus, touch, inputs, scroll, or visual finish | `surface-details` | `surface-motion`, `references/accessibility.md` |
+| Review quality, craft, papercuts, entropy, or "why this feels bad" | `references/quality.md` | `system-patterns`, `system-components`, `surface-details` |
+
+---
+
+## Prompt Examples
+
+```text
+Use $system-patterns and $system-components to design a billing settings form with validation, loading, error, and empty states.
+```
+
+```text
+Use $system-naming to audit these component, token, and Figma layer names for consistency.
+```
+
+```text
+Use $surface-copy to improve the error messages, empty states, helper text, and onboarding copy in this flow.
+```
+
+```text
+Use $surface-interaction first, then $surface-motion, to decide and implement the behaviour for this swipe-to-dismiss card.
+```
+
+```text
+Use $surface-details to review this modal for focus return, scroll lock, touch behaviour, safe areas, and visual polish.
+```
+
+```text
+Use $system-tokens and $surface-colour to define semantic colour tokens for light and dark themes with accessible contrast.
+```
+
+Use `surface-copy` for explanatory or persuasive writing such as error message bodies, empty states, onboarding, tooltips, loading copy, and marketing-style CTAs. Use `system-naming` for product action labels, commands, feature names, UI terminology, and copy that must stay consistent across code, Figma, docs, analytics, or a glossary.
+
+---
+
+## Installation
+
+Install globally for Codex:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/olzn/skills/main/suites/ui-craft/install.sh | sh
+```
+
+By default, this installs to:
+
+```text
+${CODEX_HOME:-$HOME/.codex}/skills
+```
+
+Install into a project or Claude Code folder by setting `TARGET_DIR`:
+
+```sh
+TARGET_DIR=.claude/skills sh install.sh
+```
+
+From a local clone:
+
+```sh
+git clone https://github.com/olzn/skills.git
+cd skills/suites/ui-craft
+sh install.sh
+```
+
+---
+
+## Manual Installation
+
+Copy each skill folder into the same skills directory. The needed shared references are already duplicated inside each skill's `references/` folder:
+
+```text
+ui-craft/
+surface-motion/
+surface-interaction/
+surface-typography/
+surface-copy/
+surface-colour/
+surface-details/
+system-tokens/
+system-naming/
+system-components/
+system-patterns/
+```
+
+For backwards compatibility with older installed skills, you may also copy the flat shared reference files into the skills directory:
+
+```text
+design-philosophy.md
+accessibility.md
+composition.md
+quality.md
+```
+
+---
+
+## Validation
+
+Run the dependency-free validation harness before publishing or installing from a local clone:
+
+```sh
+sh scripts/validate.sh
+```
+
+---
+
+## How To Start
+
+Read:
+
+- [surface/README.md](surface/README.md) for the experiential surface layer.
+- [system/README.md](system/README.md) for the structural system layer.
+- [surface/composition.md](surface/composition.md) for sequencing and lead-skill selection.
+- [surface/quality.md](surface/quality.md) for cross-suite quality and craft reviews.
+
+---
+
+## Attribution
+
+This suite distils ideas from many designers, engineers, and design-system practitioners, including Anthony Hobday, Benji Taylor, Rauno Freiberg, Emil Kowalski, Jakub Krolikowski, Derek Briggs, Raphael Salaja, Laws of UX, NN/g, Polaris, Intuit, Vodafone, and others cited inside the relevant skill documents.
+
+All original ideas and guidelines belong to their respective authors. This repo packages those influences as agent skills for practical interface work.
+
+---
+
+## Licence
+
+MIT

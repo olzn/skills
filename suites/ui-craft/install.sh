@@ -32,7 +32,7 @@ else
   TMP_DIR="${TMPDIR:-/tmp}/ui-craft-install-$$"
   mkdir -p "$TMP_DIR"
   curl -fsSL "$REPO_TARBALL" | tar -xz -C "$TMP_DIR"
-  SRC_ROOT="$TMP_DIR/skills-main"
+  SRC_ROOT="$TMP_DIR/skills-main/suites/ui-craft"
 fi
 
 copy_file() {
