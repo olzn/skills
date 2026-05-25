@@ -5,18 +5,20 @@ Personal agent skills for design and product work.
 ## Repository Structure
 
 ```text
-olzn/skills/
-├── skills/paper-prototype/
-└── suites/ui-craft/
-    ├── install.sh
-    ├── scripts/
-    ├── ui-craft/
-    ├── surface/
-    └── system/
+skills/
+├── skills/
+│   └── paper-prototype/
+└── suites/
+    └── ui-craft/
+        ├── install.sh
+        ├── scripts/
+        ├── ui-craft/
+        ├── surface/
+        └── system/
 ```
 
-- [`skills/paper-prototype/`](skills/paper-prototype/) is an independently installable single skill.
-- [`suites/ui-craft/`](suites/ui-craft/) is a larger composed skill system.
+- [`skills/`](skills/) contains independently installable single skills.
+- [`suites/`](suites/) contains larger composed skill systems.
 
 ## Standalone Skills
 
