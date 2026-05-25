@@ -1,14 +1,21 @@
 # Skills
 
-Personal agent skills.
+Personal agent skills for design and product work.
 
 ## Available skills
 
-- [`paper-prototype`](paper-prototype/) — Build a throwaway prototype to answer one question before committing to a direction. Uses Paper first for UI/design questions, a tiny terminal app for logic/state questions, and code only when runtime behaviour is the thing being tested.
+- [`paper-prototype`](paper-prototype/) - Create Paper-first UI prototype directions, especially after `grill-with-docs` has settled product and domain decisions. Use it to turn open interface questions into editable Paper artboards before committing to implementation.
 
-## Using with pi
+## Using with Codex or pi
 
-Clone this repository, then add it to pi settings:
+Install a skill directly from GitHub:
+
+```sh
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --url https://github.com/olzn/skills/tree/main/paper-prototype
+```
+
+Or clone this repository, then add it to pi settings:
 
 ```json
 {
@@ -16,4 +23,4 @@ Clone this repository, then add it to pi settings:
 }
 ```
 
-Or copy a skill directory into one of pi's discovered skill locations, such as `~/.agents/skills/`.
+You can also copy a skill directory into a discovered skill location, such as `~/.codex/skills/` or `~/.agents/skills/`.
