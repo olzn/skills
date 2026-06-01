@@ -1,6 +1,6 @@
 ---
 name: surface-motion
-description: Implement animation and transitions with precise easing, timing, and transform rules. Use this skill whenever writing CSS transitions, keyframe animations, spring animations, Motion (Framer Motion) configs, or any code that moves elements on screen. Also triggers for easing curves, duration tuning, transform-origin placement, scale ranges, exit/entrance patterns, staggered entrances, icon swap animations, AnimatePresence, scroll-triggered reveals, CSS transition vs keyframe selection, animation libraries, spring physics, reduced motion, and "feels janky" or "too slow/fast" complaints. Provides the exact values, code patterns, and implementation recipes for web animation. Does NOT decide whether something should animate or what spatial logic to follow (use surface-interaction for those decisions). Does NOT cover gesture design, frequency/novelty calibration, or interaction intent. Does NOT cover colour, typography, layout, or component APIs.
+description: Implement animation and transitions with precise easing, timing, and transform rules. Use this skill whenever writing CSS transitions, keyframe animations, spring animations, Motion (Framer Motion) configs, or any code that moves elements on screen. Also triggers for animation vocabulary, pattern names, easing curves, duration tuning, transform-origin placement, scale ranges, exit/entrance patterns, staggered entrances, icon swap animations, AnimatePresence, scroll-triggered reveals, CSS transition vs keyframe selection, animation libraries, spring physics, reduced motion, and "feels janky" or "too slow/fast" complaints. Provides the exact values, code patterns, and implementation recipes for web animation. Does NOT decide whether something should animate or what spatial logic to follow (use surface-interaction for those decisions). Does NOT cover gesture design, frequency/novelty calibration, or interaction intent. Does NOT cover colour, typography, layout, or component APIs.
 ---
 
 # Motion
@@ -10,6 +10,8 @@ Animation implementation for web interfaces. This skill provides the exact value
 **surface-interaction decides whether and why. This skill decides how.** For accessibility across all skills, see `references/accessibility.md`. For multi-skill task sequencing, see `references/composition.md`.
 
 For animation polish reviews, paired element timing, CSS-only icon swaps, `AnimatePresence initial={false}`, and frame-by-frame debugging, read `references/polish-recipes.md`.
+
+For animation vocabulary, pattern names, and prompt terminology, read `references/animation-vocabulary.md`.
 
 ---
 

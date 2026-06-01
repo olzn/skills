@@ -1,6 +1,6 @@
 ---
 name: surface-details
-description: Catch platform-specific implementation details and visual polish that make web interfaces feel professional. Use when building forms, inputs, toggles, buttons, dropdowns, scroll behaviour, touch interfaces, focus handling, or production polish. Also triggers for bugs like iOS input zoom, sticky hover on mobile, dead zones, tooltip delay, menu prediction cones, unsafe hit areas, hydration flash, image outlines, optical alignment, shadow depth, nested radius, quality-of-life papercuts, stable scroll position, cursor safety, and performance micro-issues. Does NOT cover animation values or easing (use surface-motion), gesture decisions (use surface-interaction), type systems (use surface-typography), colour or contrast (use surface-colour), component APIs (use system-components), or token architecture (use system-tokens).
+description: Catch platform-specific implementation details and visual polish that make web interfaces feel professional. Use when building forms, inputs, textareas, toggles, buttons, dropdowns, scroll behaviour, touch interfaces, focus handling, or production polish. Also triggers for bugs like iOS input zoom, sticky hover on mobile, dead zones, tooltip delay, menu prediction cones, unsafe hit areas, textarea nested scrolling, hydration flash, image outlines, optical alignment, shadow depth, nested radius, quality-of-life papercuts, stable scroll position, cursor safety, and performance micro-issues. Does NOT cover animation values or easing (use surface-motion), gesture decisions (use surface-interaction), type systems (use surface-typography), colour or contrast (use surface-colour), component APIs (use system-components), or token architecture (use system-tokens).
 ---
 
 # Details
@@ -22,6 +22,14 @@ For expanded hit areas, safe-area insets, hairline separators, text overflow, hy
 **Set the correct `type`.** `email`, `password`, `tel`, `url`, `search`, `number`. This controls the mobile keyboard layout. The wrong type means the wrong keyboard.
 
 **Disable `spellcheck` by default on most inputs.** Only enable where prose is expected (textareas, rich text editors). Leave `autocomplete` enabled by default. Users with motor and cognitive disabilities, and anyone using a password manager, depend on it. Disable `autocomplete` only on specific fields where the browser's suggestions are misleading (e.g. a field labelled "email" that asks for someone else's email, or a one-time code input).
+
+**Let textareas grow with content when writing is the main task.** Avoid nested textarea scrolling by default. Growing textareas create a smoother writing experience and keep forms easier to scan. Use constraints only when the surrounding layout genuinely requires them.
+
+```css
+textarea {
+  field-sizing: content;
+}
+```
 
 **Use the `required` attribute.** HTML validation before JavaScript validation. The browser handles it for free.
 
@@ -336,6 +344,7 @@ For hover states, step up one level in the scale or slightly increase the opacit
 11. **Losing entered data.** Navigation, validation, or network failure clears what the user already typed.
 12. **Jumping scroll position.** List mutations move visible content unexpectedly.
 13. **Risky action under cursor.** A newly opened menu places destructive action below the current pointer.
+14. **Nested scrolling in writing textareas.** Fixed-height textareas make longer writing harder to scan. Prefer content-sized textareas unless the layout truly needs a fixed editor region.
 
 ---
 
@@ -345,6 +354,7 @@ For hover states, step up one level in the scale or slightly increase the opacit
 - Labels focus their input
 - Inputs inside a `<form>`
 - Correct `type` attributes
+- Textareas grow with content when writing is the main task
 - Decorations positioned on top, not adjacent
 - Font size at least 16px (iOS zoom)
 

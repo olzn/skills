@@ -51,7 +51,7 @@ The coordinator skill:
 
 Surface skills:
 
-- `surface-motion`: animation, easing, timing, transitions, entrances, exits.
+- `surface-motion`: animation vocabulary, easing, timing, transitions, entrances, exits.
 - `surface-interaction`: gestures, spatial logic, interruptibility, behaviour intent.
 - `surface-typography`: type scales, font loading, rhythm, wrapping, OpenType features.
 - `surface-copy`: UX copy, errors, empty states, helper text, onboarding, tooltips.
