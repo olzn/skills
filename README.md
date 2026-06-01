@@ -7,7 +7,6 @@ Personal agent skills for design and product work.
 ```text
 skills/
 ├── skills/
-│   ├── grill-with-docs/
 │   ├── paper-prototype/
 │   └── pre-build-review/
 └── suites/
@@ -24,7 +23,6 @@ skills/
 
 ## Standalone Skills
 
-- [`grill-with-docs`](skills/grill-with-docs/) - Stress-test a plan against the existing domain model, sharpen terminology, and update `CONTEXT.md` or ADRs as decisions crystallise. This is a lightly modded fork of Matt Pocock's [`grill-with-docs`](https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md).
 - [`paper-prototype`](skills/paper-prototype/) - Create Paper-first UI prototype directions, especially after `grill-with-docs` has settled product and domain decisions. Use it to turn open interface questions into editable Paper artboards before committing to implementation.
 - [`pre-build-review`](skills/pre-build-review/) - Run a direct pre-implementation review for blockers, missing states, accessibility and mobile gaps, awkward data assumptions, and implementation ambiguity.
 
@@ -69,7 +67,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --url https://github.com/olzn/skills/tree/main/skills/paper-prototype
 ```
 
-Replace `paper-prototype` with any standalone skill directory, such as `grill-with-docs` or `pre-build-review`.
+Replace `paper-prototype` with any standalone skill directory, such as `pre-build-review`.
 
 Or clone this repository, then add it to pi settings:
 
