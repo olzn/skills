@@ -46,7 +46,7 @@ If Paper MCP is not available, stop and tell the user. Do not silently fall back
 
 ### 2. Align with settled decisions
 
-If this follows `grill-with-docs`, read the relevant `CONTEXT.md` and ADRs before creating anything. Extract:
+If this follows `grill-with-docs`, create a one-page Prototype Brief before touching Paper. Read the relevant `CONTEXT.md` and ADRs before creating anything. Extract:
 
 - canonical terms
 - user roles
@@ -55,16 +55,41 @@ If this follows `grill-with-docs`, read the relevant `CONTEXT.md` and ADRs befor
 - non-negotiable product decisions
 - open design questions
 
-Use settled terms and constraints in the artboards. Do not re-litigate the domain model.
+Capture the brief in lightweight form:
 
-### 3. State the prototype contract
+- goal
+- non-goals
+- settled decisions
+- constraints
+- core states
+- open design questions
+- good enough
+- sources
+
+State the brief and ask whether anything is wrong or missing. Use settled terms and constraints in the artboards. Do not re-litigate the domain model. If the brief exposes unresolved product or domain decisions, stop and return to `grill-with-docs`.
+
+### 3. Calibrate fidelity
+
+Before creating artboards, calibrate fidelity if the user has not specified it and the choice would materially change the prototype.
+
+Use these levels:
+
+- **Sketch:** rough boxes, labels, layout ideas, and fast comparison.
+- **Structural:** clear hierarchy, real content shape, and visible state coverage, with plain visual treatment.
+- **Product-realistic:** plausible app UI with credible components, spacing, density, and interaction affordances.
+- **Polished:** presentation-quality visual direction with refined colour, typography, component treatment, and brand feel.
+- **Implementation-adjacent:** close enough to guide code, with component, state, responsive, and interaction implications made explicit.
+
+Match fidelity to the question. Use low fidelity for structure and flow decisions; use high fidelity only when visual language, perceived quality, component treatment, or implementation guidance is the question.
+
+### 4. State the prototype contract
 
 Write the contract before touching Paper:
 
 - **Question:** one sentence.
 - **Already decided:** the constraints that must carry through.
 - **Still open:** what the variants are allowed to disagree about.
-- **Fidelity:** sketch, structural, visual, interactive, or implementation-adjacent.
+- **Fidelity:** sketch, structural, product-realistic, polished, or implementation-adjacent.
 - **Exit condition:** what answer lets us stop.
 
 Good:
@@ -75,7 +100,7 @@ Bad:
 
 > "Make the settings page better."
 
-### 4. Propose directions before drawing
+### 5. Propose directions before drawing
 
 Name the intended directions before creating them so the user can steer. Default to these three:
 
@@ -85,7 +110,7 @@ Name the intended directions before creating them so the user can steer. Default
 
 Use 2 directions for small questions. Avoid more than 5.
 
-### 5. Create distinct Paper directions
+### 6. Create distinct Paper directions
 
 Each direction should be structurally different, not merely reskinned:
 
@@ -104,7 +129,7 @@ Use artboards or clearly named frames for each direction. Name them by the idea,
 - `B: Inline control panel`
 - `C: Review and commit`
 
-### 6. Work incrementally on the canvas
+### 7. Work incrementally on the canvas
 
 Use Paper MCP as a design tool, not as a one-shot renderer.
 
@@ -125,7 +150,7 @@ After each direction or substantial change, call `get_screenshot` and check:
 
 Fix obvious issues before moving on.
 
-### 7. Preserve user control
+### 8. Preserve user control
 
 The user may change the canvas manually. Treat those edits as design feedback, not interference.
 
@@ -133,7 +158,7 @@ If the user combines parts of multiple directions, help consolidate the emerging
 
 Do not declare a winning direction unless the user chooses one or gives clear instruction.
 
-### 8. Capture the answer
+### 9. Capture the answer
 
 When a direction wins, record:
 
@@ -145,7 +170,7 @@ When a direction wins, record:
 
 Label the winning frame and add a short decision note on the Paper canvas. If the decision affects durable product or domain understanding, update `CONTEXT.md` or an ADR separately.
 
-### 9. Translate only when asked
+### 10. Translate only when asked
 
 If the user wants code next, first create a design-engineering translation note:
 
