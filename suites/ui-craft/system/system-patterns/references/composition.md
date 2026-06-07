@@ -31,7 +31,7 @@ This is a dependency order, not a strict sequence. Later skills reference earlie
 ### New project setup
 
 1. **system-naming**: shared terminology, token/component naming grammar, feature labels
-2. **system-tokens**: spacing, radius, shadow, z-index, breakpoint, motion tokens
+2. **system-tokens**: spacing, radius, surface edge, shadow, z-index, breakpoint, motion tokens
 3. **surface-typography**: type scale, font loading, font pairing
 4. **surface-colour**: OKLCH palette, semantic colour mapping, light/dark themes
 5. **system-components**: base component conventions (prop names, CVA, forwarding)
@@ -140,7 +140,7 @@ These are the most common boundary questions:
 
 **"What should this action be called?"** → system-naming decides. **"What explanatory copy surrounds it?"** → surface-copy writes.
 
-**"What shadow value?"** → system-tokens owns the scale. **"Box-shadow vs border?"** → surface-details recommends shadows.
+**"What surface edge or shadow value?"** → system-tokens owns the scale. **"Crisp edge, elevation, or border?"** → surface-details decides the application.
 
 **"What colour for dark mode?"** → surface-colour decides the mapping. **"How does theming work?"** → system-tokens owns the mechanism.
 

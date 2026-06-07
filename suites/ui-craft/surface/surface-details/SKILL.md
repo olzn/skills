@@ -1,6 +1,6 @@
 ---
 name: surface-details
-description: Catch platform-specific implementation details and visual polish that make web interfaces feel professional. Use when building forms, inputs, textareas, toggles, buttons, dropdowns, scroll behaviour, touch interfaces, focus handling, or production polish. Also triggers for bugs like iOS input zoom, sticky hover on mobile, dead zones, tooltip delay, menu prediction cones, unsafe hit areas, textarea nested scrolling, hydration flash, image outlines, optical alignment, shadow depth, nested radius, quality-of-life papercuts, stable scroll position, cursor safety, and performance micro-issues. Does NOT cover animation values or easing (use surface-motion), gesture decisions (use surface-interaction), type systems (use surface-typography), colour or contrast (use surface-colour), component APIs (use system-components), or token architecture (use system-tokens).
+description: Catch platform-specific implementation details and visual polish that make web interfaces feel professional. Use when building forms, inputs, textareas, toggles, buttons, dropdowns, scroll behaviour, touch interfaces, focus handling, or production polish. Also triggers for bugs like iOS input zoom, sticky hover on mobile, dead zones, tooltip delay, menu prediction cones, unsafe hit areas, textarea nested scrolling, hydration flash, image outlines, optical alignment, surface definition, shadow depth, nested radius, quality-of-life papercuts, stable scroll position, cursor safety, and performance micro-issues. Does NOT cover animation values or easing (use surface-motion), gesture decisions (use surface-interaction), type systems (use surface-typography), colour or contrast (use surface-colour), component APIs (use system-components), or token architecture (use system-tokens).
 ---
 
 # Details
@@ -302,17 +302,23 @@ If the padding changes, the inner radius must change with it. This relationship 
 
 Play/arrow icons are the worst offenders. If alignment looks wrong despite correct measurements, trust the eye and adjust by 2-4px.
 
-**Box-shadow instead of borders.** A subtle multi-layered `box-shadow` produces more depth and visual refinement than a `1px solid` border, particularly in light mode. Shadows adapt better to varied backgrounds because they use transparency.
+**Surface edge plus elevation instead of flat borders.** Crisp surface definition and elevation are separate jobs. Use an edge token for the surface boundary, then add elevation only when the element should feel raised.
 
-Use system-tokens's shadow scale (`--shadow-sm` through `--shadow-xl`) based on the Derek Briggs method. See system-tokens for the full scale definition and method explanation.
+Use system-tokens's edge tokens (`--edge-surface`, `--edge-surface-strong`) for definition and shadow scale (`--shadow-sm` through `--shadow-xl`) for depth. The composed semantic aliases (`--shadow-card`, `--shadow-dropdown`, `--shadow-modal`) should normally include both.
 
 ```css
+.surface {
+  box-shadow: var(--edge-surface);
+}
+
 .card {
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-card);
 }
 ```
 
-For hover states, step up one level in the scale or slightly increase the opacity (e.g. 0.06 to 0.08). Add `transition: box-shadow` to animate between states.
+Use this on cards, popovers, toolbars, floating buttons, raised controls, sheets, and menus. Do not use it as a replacement for real separators, table gridlines, input outlines, or focus rings.
+
+For hover states, keep the edge token stable and step up one elevation level or slightly increase shadow opacity (e.g. 0.06 to 0.08). Add `transition: box-shadow` to animate between states.
 
 **Image outline for depth.** A `1px` semi-transparent outline on images creates a subtle sense of containment and depth, particularly in design systems where other elements also have borders.
 
@@ -409,7 +415,8 @@ For hover states, step up one level in the scale or slightly increase the opacit
 ### Visual Polish
 - Nested border radii are concentric (outer = inner + padding)
 - Buttons with icons use optical alignment (reduced padding on icon side)
-- Cards use multi-layered box-shadow for depth, not flat borders
+- Elevated surfaces compose an edge token for crisp definition with a shadow token for depth
+- Edge tokens are not used as table borders, dividers, input outlines, or focus rings
 - Images have a subtle pure black or white alpha outline for containment
 - Fixed mobile UI respects safe-area insets
 

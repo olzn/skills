@@ -73,7 +73,7 @@ Skip the route summary when the user names a specific skill or the task is small
 |---|---|---|
 | Name a feature, command, button, token, or component | `system-naming` | Relevant domain skill |
 | Write or revise explanatory UX text | `surface-copy` | `system-naming` for terms |
-| Define spacing, radius, shadow, z-index, breakpoints, or theme mappings | `system-tokens` | `surface-colour`, `surface-typography` |
+| Define spacing, radius, surface edge, shadow, z-index, breakpoints, or theme mappings | `system-tokens` | `surface-colour`, `surface-typography` |
 | Build a reusable component | `system-components` | `system-naming`, `system-tokens`, `surface-details` |
 | Design a form, table, navigation, feedback system, or page layout | `system-patterns` | `system-components`, `surface-details` |
 | Decide whether something should animate or how a gesture should behave | `surface-interaction` | `surface-motion` |

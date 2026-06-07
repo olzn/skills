@@ -91,7 +91,7 @@ Token names are a taxonomy, not a pile of labels. They must sort, search, and su
 - Order names from broad to specific.
 - Primitive tokens describe what the value is: `--blue-500`, `--space-4`, `--radius-md`.
 - Semantic tokens describe the role: `--color-text-primary`, `--color-surface-raised`.
-- Component tokens scope semantic values only when needed: `--button-padding-x`, `--card-shadow`.
+- Component tokens scope semantic values only when needed: `--button-padding-x`, `--card-edge`, `--card-shadow`.
 - Include state or mode only when it changes the role: `--color-action-hover`, `--color-border-focus`.
 - Do not put a component name in a semantic token. Use component tokens for component scope.
 - Mirror Figma variable groupings and code names where possible. If they differ, document the mapping.

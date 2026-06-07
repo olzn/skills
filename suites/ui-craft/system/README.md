@@ -32,7 +32,7 @@ For repository-level cross-suite references, see surface's `accessibility.md` (a
 
 ### system-tokens
 
-Design token architecture and foundation scales. The three-layer model (primitive, semantic, component), naming conventions (`--{category}-{property}-{modifier}`), and concrete scales for spacing (base-4), border radius, shadow (Derek Briggs natural shadow method with matched Y/blur, negative spread, uniform opacity), z-index (named layers), breakpoints (mobile-first), motion tokens, and icon sizing. Plus units guidance (`rem` for spacing, `px` for borders, unitless for line-heights) and theming (primitives never change, only semantics remap).
+Design token architecture and foundation scales. The three-layer model (primitive, semantic, component), naming conventions (`--{category}-{property}-{modifier}`), and concrete scales for spacing (base-4), border radius, surface edge tokens for crisp definition, shadow (Derek Briggs natural shadow method with matched Y/blur, negative spread, uniform opacity), z-index (named layers), breakpoints (mobile-first), motion tokens, and icon sizing. Plus units guidance (`rem` for spacing, `px` for borders, unitless for line-heights) and theming (primitives never change, only semantics remap).
 
 Based on the [Design System Checklist](https://www.designsystemchecklist.com) and the token patterns of Tailwind, Radix Themes, and Open Props.
 

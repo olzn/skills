@@ -1,6 +1,6 @@
 ---
 name: system-tokens
-description: Set up and maintain design token architecture and foundation scales. Use when defining spacing, radius, shadow, z-index, breakpoint, or motion scales, establishing the primitive/semantic/component token model, naming tokens, configuring theming, or auditing hardcoded values. Also triggers for "design tokens", "CSS custom properties", "token naming", "semantic layer", "spacing scale", "theming", or "hardcoded values". Provides scale definitions and structural rules that distribute colour, type, and motion values across a system. Does NOT cover broad naming taxonomies, UI terminology, user-facing labels, feature names, or product names (use system-naming). Does NOT cover component APIs (use system-components), composite patterns (use system-patterns), palettes (use surface-colour), or type scales (use surface-typography).
+description: Set up and maintain design token architecture and foundation scales. Use when defining spacing, radius, edge, shadow, z-index, breakpoint, or motion scales, establishing the primitive/semantic/component token model, naming tokens, configuring theming, or auditing hardcoded values. Also triggers for "design tokens", "CSS custom properties", "token naming", "semantic layer", "spacing scale", "surface definition", "theming", or "hardcoded values". Provides scale definitions and structural rules that distribute colour, type, and motion values across a system. Does NOT cover broad naming taxonomies, UI terminology, user-facing labels, feature names, or product names (use system-naming). Does NOT cover component APIs (use system-components), composite patterns (use system-patterns), palettes (use surface-colour), or type scales (use surface-typography).
 ---
 
 # Tokens
@@ -44,7 +44,7 @@ Lowercase, hyphen-separated. Category first (enables autocomplete grouping in ed
 
 - Primitives: `--{scale}-{step}` (e.g., `--gray-500`, `--space-4`, `--radius-md`)
 - Semantics: `--{category}-{role}-{variant}` (e.g., `--color-text-primary`, `--space-gap-default`)
-- Component: `--{component}-{property}` (e.g., `--button-padding-x`, `--card-shadow`)
+- Component: `--{component}-{property}` (e.g., `--button-padding-x`, `--card-edge`, `--card-shadow`)
 
 No component names in semantic tokens. `--color-primary` not `--button-color`. The semantic layer must be component-agnostic so multiple components can share it.
 
@@ -92,33 +92,44 @@ Remember the concentric radius rule from surface-details: nested elements use `o
 
 ### Shadow
 
-Elevation model using the Derek Briggs method: match Y-offset and blur-radius for each layer, apply negative spread at half the Y value (prevents the shadow from expanding wider than the element), and use uniform colour/opacity across all layers. The first layer (spread-only, no blur) acts as a subtle border.
+Separate crisp surface definition from elevation. Edge tokens define the surface boundary without implying height. Shadow tokens define depth. Composed semantic aliases combine both when an elevated surface also needs a crisp edge.
+
+Use `--edge-*` for cards, toolbars, raised buttons, menus, panels, sheets, and popovers that need surface definition. Do not use edge tokens as replacements for table borders, dividers, input outlines, or focus rings.
+
+```css
+--edge-surface:
+  inset 0 1px 0 rgb(255 255 255 / 72%),
+  0 0 0 1px rgb(0 0 0 / 4%);
+
+--edge-surface-strong:
+  inset 0 1px 0 rgb(255 255 255 / 84%),
+  0 0 0 1px rgb(0 0 0 / 7%);
+```
+
+Tune edge tokens per theme. In dark mode, reduce or remove the white inset if it creates a chalky top edge, and use a low-alpha light ring only when the surface needs separation from a dark background.
+
+Elevation uses the Derek Briggs method: match Y-offset and blur-radius for each layer, apply negative spread at half the Y value (prevents the shadow from expanding wider than the element), and use uniform colour/opacity across all layers.
 
 ```css
 --shadow-xs:
-  0 0 0 1px rgba(0, 0, 0, 0.05),
   0 1px 1px -0.5px rgba(0, 0, 0, 0.05);
 
 --shadow-sm:
-  0 0 0 1px rgba(0, 0, 0, 0.06),
   0 1px 1px -0.5px rgba(0, 0, 0, 0.06),
   0 3px 3px -1.5px rgba(0, 0, 0, 0.06);
 
 --shadow-md:
-  0 0 0 1px rgba(0, 0, 0, 0.06),
   0 1px 1px -0.5px rgba(0, 0, 0, 0.06),
   0 3px 3px -1.5px rgba(0, 0, 0, 0.06),
   0 6px 6px -3px rgba(0, 0, 0, 0.06);
 
 --shadow-lg:
-  0 0 0 1px rgba(0, 0, 0, 0.06),
   0 1px 1px -0.5px rgba(0, 0, 0, 0.06),
   0 3px 3px -1.5px rgba(0, 0, 0, 0.06),
   0 6px 6px -3px rgba(0, 0, 0, 0.06),
   0 12px 12px -6px rgba(0, 0, 0, 0.06);
 
 --shadow-xl:
-  0 0 0 1px rgba(0, 0, 0, 0.06),
   0 1px 1px -0.5px rgba(0, 0, 0, 0.06),
   0 3px 3px -1.5px rgba(0, 0, 0, 0.06),
   0 6px 6px -3px rgba(0, 0, 0, 0.06),
@@ -126,9 +137,19 @@ Elevation model using the Derek Briggs method: match Y-offset and blur-radius fo
   0 24px 24px -12px rgba(0, 0, 0, 0.06);
 ```
 
-Each elevation step adds one more layer. Higher elevation = more layers, further spread. The uniform opacity means you can tune the entire shadow system by changing a single alpha value.
+Each elevation step adds one more depth layer. Higher elevation = more layers, further spread. The uniform opacity means you can tune the entire shadow system by changing a single alpha value.
 
-Map to semantics: `--shadow-card: var(--shadow-sm)`, `--shadow-dropdown: var(--shadow-lg)`, `--shadow-modal: var(--shadow-xl)`.
+Map to semantics by composing edge and elevation tokens:
+
+```css
+--shadow-surface: var(--edge-surface);
+--shadow-card: var(--edge-surface), var(--shadow-sm);
+--shadow-toolbar: var(--edge-surface), var(--shadow-sm);
+--shadow-dropdown: var(--edge-surface), var(--shadow-lg);
+--shadow-modal: var(--edge-surface), var(--shadow-xl);
+```
+
+Name edge-only aliases as `--shadow-surface` only when the implementation API expects a `box-shadow` value. In design-token documentation, call the underlying idea surface definition or edge treatment, not elevation.
 
 ### Z-Index
 
@@ -194,7 +215,7 @@ Aligned to the type scale:
 - Borders and outlines: `px` (should not scale)
 - Line-heights: unitless (inherits correctly)
 - Breakpoints: `px` (fixed device thresholds)
-- Shadows: `px` with `rgba` (visual, not structural)
+- Edge and shadow tokens: `px` with alpha colour (visual, not structural)
 
 ---
 
@@ -222,7 +243,7 @@ For colour-specific theming decisions (dark mode surface values, brand colour ad
 
 ## Anti-Patterns
 
-1. **Hardcoded values in components.** Any colour, spacing, radius, shadow, or z-index not referencing a token.
+1. **Hardcoded values in components.** Any colour, spacing, radius, edge, shadow, or z-index not referencing a token.
 2. **Skipping the semantic layer.** `var(--blue-500)` directly in a component instead of `var(--color-brand-primary)`.
 3. **Component names in semantic tokens.** `--button-bg` as a semantic. Semantics are role-based, not component-scoped.
 4. **Z-index guessing.** `z-index: 999` or `z-index: 99999` instead of the named scale.
@@ -242,6 +263,7 @@ For colour-specific theming decisions (dark mode surface values, brand colour ad
 ### Scales
 - Spacing scale defined (base-4, in `rem`)
 - Border radius scale defined
+- Surface edge scale defined
 - Shadow elevation scale defined
 - Z-index named layers defined
 - Breakpoint tokens defined (mobile-first)
@@ -255,7 +277,7 @@ For colour-specific theming decisions (dark mode surface values, brand colour ad
 - Components never check the current theme
 
 ### Hygiene
-- No hardcoded colour, spacing, radius, shadow, or z-index in component code
+- No hardcoded colour, spacing, radius, edge, shadow, or z-index in component code
 - All values use correct units (rem/px/unitless as specified)
 - No spacing values outside the scale
 

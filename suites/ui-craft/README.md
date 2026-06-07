@@ -60,7 +60,7 @@ Surface skills:
 
 System skills:
 
-- `system-tokens`: spacing, radius, shadow, z-index, breakpoints, semantic tokens.
+- `system-tokens`: spacing, radius, surface edge, shadow, z-index, breakpoints, semantic tokens.
 - `system-naming`: UI terms, commands, variables, components, icons, tokens.
 - `system-components`: reusable component APIs, variants, state coverage, composition.
 - `system-patterns`: forms, navigation, tables, feedback, layouts, larger UI patterns.
@@ -73,7 +73,7 @@ Start with the narrowest skill that owns the decision.
 |---|---|
 | Broad UI build, review, or polish pass | `ui-craft` |
 | Feature names, commands, component names, token names | `system-naming` |
-| Design tokens, spacing, radius, shadows, theme structure | `system-tokens` |
+| Design tokens, spacing, radius, surface edges, shadows, theme structure | `system-tokens` |
 | Reusable component APIs and state coverage | `system-components` |
 | Forms, tables, navigation, dashboards, modals, page structure | `system-patterns` |
 | Error messages, empty states, helper text, onboarding copy | `surface-copy` |

@@ -14,7 +14,7 @@ Load this reference when a task involves many names, a cross-surface audit, or a
 | Icon | Depicted glyph | `trash`, `lightbulb`, `chevron-left` | `delete`, `idea`, `back` as the only name |
 | Primitive token | Value identity | `blue-500`, `space-4`, `radius-md` | `primary-blue`, `medium-space` |
 | Semantic token | Role | `color-text-primary`, `space-gap-default` | `button-blue`, `grey-alt` |
-| Component token | Component + property | `button-padding-x`, `card-shadow` | `primary-button-token` |
+| Component token | Component + property | `button-padding-x`, `card-edge`, `card-shadow` | `primary-button-token` |
 | CSS class | Object, role, or utility | `search-field`, `billing-summary`, `sr-only` | `blue-box`, `thing`, `new-style` |
 | Variable | Held value | `selectedPlan`, `visibleColumns` | `data`, `obj`, `stuff` |
 | Function | Verb phrase | `formatCurrency`, `fetchInvoices` | `currency`, `processor` |

@@ -41,7 +41,7 @@ Apply this to bottom navigation, mobile toolbars, sheets, toasts, floating actio
 
 ## Hairline Separators
 
-Use hairlines for dense separators and shadow rings for elevated surfaces. Do not replace table borders, dividers, or input outlines with elevation shadows.
+Use hairlines for dense separators and edge tokens for elevated or raised surfaces. Do not replace table borders, dividers, input outlines, or focus rings with surface edges or elevation shadows.
 
 ```css
 :root {
@@ -56,6 +56,22 @@ Use hairlines for dense separators and shadow rings for elevated surfaces. Do no
 ```
 
 Use sparingly. A page full of hairlines reads as visual noise.
+
+## Surface Definition
+
+Use surface edge tokens to give elevated elements crisp definition without implying extra height. This is an edge treatment, not a drop shadow.
+
+```css
+.surface {
+  box-shadow: var(--edge-surface);
+}
+
+.popover {
+  box-shadow: var(--edge-surface), var(--shadow-lg);
+}
+```
+
+Apply this to cards, popovers, toolbars, floating buttons, raised controls, sheets, and menus. Keep the edge stable across hover and active states unless the surface itself changes contrast. If the element lifts, adjust the elevation layer rather than strengthening every edge.
 
 ## Image Outlines
 
@@ -115,7 +131,8 @@ When a modal, drawer, or overlay makes the page behind it inactive, use focus tr
 - Small visible controls have expanded hit areas.
 - Expanded hit areas do not overlap.
 - Fixed mobile UI respects safe-area insets.
-- Dense separators use hairlines, elevated surfaces use shadows.
+- Dense separators use hairlines.
+- Elevated surfaces use edge tokens for crisp definition and shadow tokens only when they need depth.
 - Image outlines use pure black or white alpha.
 - Long text cannot resize controls or break grid tracks.
 - Persisted UI state does not flash after hydration.
