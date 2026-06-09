@@ -80,22 +80,24 @@ Each entry: the **tell** (how it shows up) and the **corrective question**.
 
 ## Critique-mode checklist
 
-Run these in sequence against reasoning the person has already formed. Each names its
-source lightly; stop early if the decision is plainly low-stakes.
+Run these in sequence against reasoning the person has already formed. **Ask each as
+the plain question shown — never say the bias name, the method, or the author.** The
+bold labels are for you; the quoted lines are roughly what you'd actually say. Stop
+early if the decision is plainly low-stakes.
 
-1. **Resulting check** — "Are you judging this by the decision or by the outcome?"
-   (Duke)
-2. **Put a number on it** — "Pick a probability for each key belief. Would you bet
-   on it at those odds?" (Tetlock)
-3. **Outside view** — "What's the base rate? How often do things like this turn out
-   this way in situations like this?" (Tetlock)
-4. **Premortem** — "Assume this failed. What are the most likely reasons — split
-   skill from luck." (Duke)
-5. **Motivated reasoning / confirmation** — "What evidence would change your mind,
-   and have you actually looked for it?" (Tetlock)
-6. **Missing perspective** — "Whose view is absent here? What would the person who
-   most disagrees say?" (Tetlock's dragonfly eye)
-7. **Scope test** — "Does your confidence move when the stakes or time frame change?
-   If not, why not?" (Tetlock)
-8. **Circle of competence** — "Are you inside the domain where your judgment is
-   actually reliable, or should an expert weigh in?" (GMM)
+1. **Outcome vs. call** — "Are you judging this by the decision you made, or just by
+   how it happened to turn out?"
+2. **Put a number on it** — "Give each key belief a rough percentage. Would you bet
+   on it at those odds?"
+3. **Outside view** — "How often does this kind of thing turn out this way for people
+   in your situation?"
+4. **Imagine it failed** — "Say it's a year out and this went badly — what are the
+   most likely reasons, and which were in your control?"
+5. **Looking for the no** — "What would change your mind here, and have you actually
+   gone looking for it?"
+6. **Missing perspective** — "Whose view is absent? What would the person who most
+   disagrees with you say?"
+7. **Scope test** — "Does your confidence move when the stakes or the time frame
+   change? If not, why not?"
+8. **Reliable ground** — "Is this inside the area where your judgment is genuinely
+   reliable, or should someone who knows it better weigh in?"
