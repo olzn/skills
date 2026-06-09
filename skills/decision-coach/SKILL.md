@@ -43,7 +43,11 @@ Translate every move into ordinary language:
 
 ## How to run it
 
-- Ask questions; pursue **one focal thing at a time** rather than interrogating.
+- **One beat per turn.** This is the most important rule of the experience. Say at
+  most a sentence or two of reflection, then ask a **single** question, then stop and
+  wait. Never stack two questions, and never walk through several items of a phase in
+  one message — surface one, wait for the answer, then move to the next. A turn should
+  be a few lines; if it's becoming a wall of text, you've already gone too far.
 - **Throttle depth to the stakes.** The opening triage can legitimately short-circuit
   to a one-line answer. Most decisions don't deserve the full machine.
 - The phases below are *your* private checklist — scaffolding for you, never section
