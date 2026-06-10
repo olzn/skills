@@ -1,0 +1,25 @@
+<!-- hig-snapshot: 2026-06-10 · baseline: iOS 26.x / macOS 26.x · src: materials, color, layout, scroll-views, toolbars, tab-bars, sidebars, buttons, motion, accessibility -->
+
+# Liquid Glass review
+
+One rule generates everything here: two layers — a content layer (standard materials, semantic colours, edge-to-edge) below, and a floating functional layer of Liquid Glass controls/navigation above (mental model: `doctrine.md`). Applies to iOS and macOS alike. Nothing in this file is rejection-risk; tiers 2–3 only.
+
+## Tier 2 — legibility and function break
+
+- **Glass on content.** Flag any glass effect on cards, list rows, cells, or backgrounds — Liquid Glass is for the floating control/navigation layer only. Sole exception: a transient interactive element (slider knob, toggle) takes on glass while actively manipulated. Content grouping uses standard materials (iOS ultraThin→thick; macOS purpose-named). <!-- src: materials -->
+- **Glass on glass.** Flag glass stacked over other glass — glass panels over glass bars, glass cards inside glass sheets. No system pattern stacks it; the result is visual noise and contrast collapse. <!-- src: materials, _practice -->
+- **Busy imagery without a scrim.** The clear variant is only for visually rich media, and over bright content needs the dark dimming layer at **35% opacity** (skip when content is dark or AVKit playback controls supply their own). Text-heavy components — alerts, sidebars, popovers — take the regular variant, full stop. <!-- src: materials -->
+- **Legibility across appearance settings.** Verify text/symbols on glass under the user's preferred Liquid Glass appearance, **Reduce Transparency**, and **Increase Contrast** — the system swaps glass for more opaque variants and the layout must survive the swap. Check the resting state too: at top-of-scroll, over the app's own header colours, monochromatic bar symbols must still separate from similar content hues. (Press reports a system-wide glass-intensity slider in the 27 cycle — not in the HIG as of 2026-06-10; don't assert it, but designing for both extremes covers it.) <!-- src: materials, color, accessibility -->
+- **Vibrancy misuse.** Foreground colours on any material must be the vibrant semantic ones, never plain opaque greys; quaternary-level labels are illegible on thin/ultraThin materials. <!-- src: materials -->
+- **Hit areas (SwiftUI).** Glass buttons hit-test the label, not the platter — custom glass controls need `contentShape` over the full glass area. Community-documented; verify by tapping platter edges. <!-- src: _practice -->
+
+## Tier 3 — feels non-native
+
+- **Custom bar backgrounds — banned.** No background fills, tints, or hairline borders on toolbars, tab bars, or sidebars; the content beneath informs bar colour and the scroll edge effect provides separation. A solid or dark-tinted bar is the loudest stale-design tell. <!-- src: toolbars, materials, color -->
+- **One tinted control.** Colour on glass is emphasis: tint the **background** (never the symbol or text) of the single prominent action, placed trailing; everything else stays monochromatic. Flag multiple tinted platters in one bar or view. <!-- src: color, toolbars -->
+- **Scroll-edge-effect correctness.** Use it only where a scroll view sits behind floating elements — it is functional, never decorative. Prefer the automatic style (hard/soft demand a legibility test in context); one effect per view; in split layouts each pane may carry its own but their heights stay consistent. Flag gradient scrims or drop shadows doing this job. <!-- src: scroll-views -->
+- **Concentricity.** Corner radii nest: a control inside a bar is concentric with the bar's corners (child radius = parent radius − inset); bar and sheet corners align with the display curvature. Mismatched nesting reads instantly as foreign (measured values: `tables/metrics.md`). <!-- src: toolbars -->
+- **One GlassEffectContainer per group.** Related glass elements share a single container — it merges the backdrop render (separate effects cost ≈3 offscreen textures each; community-measured) and is required for morphing between elements. Multiple loose glass effects in one cluster are slower and visually disjoint. <!-- src: _practice -->
+- **Morph fragility.** Capsule↔circle and element-merge morphs snapped or broke across iOS 26.0/26.1 — worst with `Menu` inside a `GlassEffectContainer` — and workarounds changed between point releases (community-reported; version-gated). Treat morphing glass groups as fragile: verify on hardware — the simulator doesn't render specular highlights or motion response correctly. <!-- src: _practice -->
+- **Sparing custom glass.** System components get glass automatically; reserve custom glass for the few most important functional elements. Several custom glass platters on one screen is decoration, not function. <!-- src: materials -->
+- **Input-aware motion.** Glass responds emphatically to touch and subtly to pointer — flag prototypes that hand-author one identical motion treatment for both input types. <!-- src: motion -->
