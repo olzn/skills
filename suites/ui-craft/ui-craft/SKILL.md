@@ -101,6 +101,7 @@ Do not use UI Craft for:
 - Pure infrastructure, deployment, data modelling, or API design.
 - Brand strategy or product positioning without an interface or design-system surface.
 - Native mobile interface work where web platform rules do not apply.
+- HTML prototypes imitating iOS/macOS native UI are co-owned: UI Craft owns the web mechanics, the **hig** suite owns native idiom and metric values — where they conflict on a native-targeting prototype, HIG wins.
 
 ---
 

@@ -9,6 +9,8 @@ Platform-specific implementation details and visual polish that separate profess
 
 This skill fires during construction of interactive elements and when debugging platform behaviour. It is deliberately granular: a list of specific, testable details. For design philosophy, see `references/design-philosophy.md`. For animation implementation, see **surface-motion**. For accessibility across all skills, see `references/accessibility.md`. For multi-skill task sequencing, see `references/composition.md`.
 
+For native iOS/macOS values (hit targets, type minima, bar metrics, component idiom) use the **hig** suite — this skill's web values do not apply to prototypes imitating native Apple UI; on conflict there, HIG wins.
+
 For expanded hit areas, safe-area insets, hairline separators, text overflow, hydration flash, platform shortcut labels, and inert inactive regions, read `references/interface-polish.md`.
 
 ---
