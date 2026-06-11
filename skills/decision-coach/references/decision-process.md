@@ -25,6 +25,15 @@ People readily see **Bad Luck** (it lets them off the hook) but overlook **Dumb
 Luck** (they took credit). Force all four cells. Luck is whatever intervenes between
 your decision and the outcome you observe.
 
+## Beliefs as bets — "wanna bet?"
+
+Most beliefs are absorbed, not vetted: we hear, believe, and only rarely check.
+Treating a stated belief as something you'd have to **back with money at odds**
+("how sure are you — would you bet on that?") flips the mind from defending the
+belief to vetting it. Use it on the person's load-bearing claims ("the market's too
+crowded", "she'd never go for it"): the moment a belief becomes a bet, "I'm sure"
+quietly becomes "about 70%", and the missing homework reveals itself.
+
 ## The decision multiverse and counterfactuals
 
 At the moment of choosing, the future is a **tree** of branches — thick boughs
@@ -45,7 +54,10 @@ For each option under consideration:
 2. **Payoffs** — the magnitude of gain (upside) or loss (downside) of each outcome,
    in whatever currency you actually value: money, time, happiness, health, social
    capital, self-esteem. A decision is good when the upside potential compensates for
-   your exposure to the downside.
+   your exposure to the downside — which makes **risk tolerance** an explicit input,
+   not an afterthought: ask outright "what's the most you can afford to lose here,
+   and would the bad case take you out of the game?" The same option set can be the
+   right bet for one person's tolerance and a reckless one for another's.
 3. **Probabilities** — the likelihood of each outcome (calibrate these with
    `forecasting.md`).
 
@@ -68,7 +80,10 @@ less than perfect. Run these in order; any "go fast" signal lets you stop early.
 - **"When a decision is hard, it's easy."** If you're agonizing between two close
   options, the closeness itself means you can't be very wrong either way. Use the
   **only-option test**: "if this were my *only* option, would I be happy with it?"
-  If yes for more than one, flip a coin.
+  If yes for more than one, flip a coin. *This verdict has to be earned:* for
+  low-stakes choices it's available at triage, but for consequential ones it only
+  applies *after* the options are mapped — pre-analysis, "closeness" can just mean
+  un-examined options or a falsely narrow menu.
 - **Two-way door** (reversibility) — the lower the cost to quit, the faster you can
   decide. Being "quitty" lets you choose better when to be "gritty."
 - **Decision stacking** — put low-impact, easy-to-quit decisions *in front of* a
@@ -96,6 +111,22 @@ Imagining obstacles makes you *more* likely to succeed (mental contrasting), and
   place, each with a likelihood estimate and an impact assessment, so you can
   prioritize which to act on.
 
+## Recruit your future (and past) selves
+
+Decisions get distorted by **temporal discounting** — favoring the present self at
+the future self's expense (the night owl who wrecks the next morning and would do it
+again). Counter it by moving other selves into the room:
+
+- **10-10-10** — "how will I feel about this in ten minutes? ten months? ten
+  years?" It drags the long-term consequences into a decision the present self is
+  about to make on short-term feelings.
+- **Regret in advance** — regret normally arrives *after* the outcome, when it can
+  only hurt; imagining it *before* the decision turns it into useful information
+  ("if this goes the way it usually goes, what will I wish I'd done?").
+- **The past-self mirror** — "a year ago, would you have signed up for the position
+  you're in now? a year from now, will you be glad you stayed the course?" Useful
+  against both panic-selling and sunk-cost grinding.
+
 ## Protecting the decision from your future self
 
 - **Precommitment / Ulysses contracts** — agreements made *now* that bind the
@@ -110,6 +141,12 @@ Imagining obstacles makes you *more* likely to succeed (mental contrasting), and
   *without detection* — i.e. choices each individually justifiable but ruinous in
   aggregate (the free donut every day). "The evil genius is you." The output reveals
   the category decisions you should pre-commit to.
+- **Kill criteria** — pre-set *signals and dates* that trigger quitting or switching
+  ("if we haven't hit X by March, we stop"). People quit too late: sunk cost and
+  escalation make the in-the-moment self relitigate endlessly. Deciding the exit
+  conditions *now*, before momentum and identity attach to the choice, makes quitting
+  a planned move instead of a daily willpower contest. (Distinct from the **stopping
+  rule** above, which ends *deliberation*; kill criteria end the *commitment*.)
 - **Hedging** — pay something to mitigate a downside you hope never to face
   (insurance, airport buffer time). It has a cost, reduces the impact of bad luck,
   and you hope you never use it. Anticipate the irrational regret of an unused hedge
@@ -130,20 +167,27 @@ discusses, then un-anonymize only when expertise genuinely matters.
 ## Decision-journal template
 
 Capture this *at decision time* so the choice can later be judged on process, not
-outcome:
+outcome. The field labels are deliberately plain language — the user keeps this
+artifact, so it must respect the voice rule (no method names):
 
 ```
-DECISION JOURNAL — <date>
+DECISION RECORD — <date>
 
-Decision:            <the choice being made>
-Goal / values:       <what outcome I actually want, and why>
-Options considered:  <the reasonable set>
-Outcome tree:        <key possible outcomes + rough probability of each>
-Chosen option:       <which, and the core reason>
-Upside / downside:   <payoff if it works / cost if it doesn't, in the currency I value>
-Premortem (skill):   <ways I could cause failure>
-Premortem (luck):    <ways bad luck could cause failure>
-Safeguards:          <precommitments / hedges in place>
-Would change my mind: <the information or signal that would flip this>
-Review date:         <when to look back — and judge the process, not the result>
+Decision:             <the choice being made>
+What I actually want: <the goal and values behind it, and why>
+Options considered:   <the real set, including the ones opened up along the way>
+How it could go:      <key possible outcomes + rough probability of each>
+Chosen path:          <which option, and the core reason>
+Upside / downside:    <payoff if it works / cost if it doesn't, in the currency I value;
+                       the most I can afford to lose>
+Ways I could sink it: <failure causes within my control>
+Ways luck could sink it: <failure causes outside my control>
+Safeguards:           <precommitments / hedges in place>
+I call it off if:     <the specific signals AND dates that trigger quitting or switching>
+Review date:          <when to look back — judge the process, not the result,
+                       and grade the probability estimates against what happened>
 ```
+
+At the review, score the estimates honestly in both directions — overconfident *and*
+underconfident — and ask what the miss teaches. Calibration only improves when
+forecasts get graded; an unreviewed journal is just a diary.

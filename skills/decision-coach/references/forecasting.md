@@ -29,14 +29,31 @@ Vague verbiage ("serious possibility", "fair chance") means wildly different odd
 different people and lets a forecaster always seem right in hindsight. Translate
 hunches into numbers, and use the **finest gradation the problem honestly supports**
 (superforecasters routinely use single percentage points). For any individual
-estimate:
+estimate (this three-step drill is Duke's, from *How to Decide*; it lives here
+because it serves calibration):
 
 - **Bull's-eye** — a point estimate.
 - **Range** — an upper and lower bound signalling your uncertainty.
-- **Shock test** — set the *narrowest* range where you'd still be genuinely shocked
-  if the truth fell outside it; aim to capture the truth ~9 times in 10. A range of
-  "0 to infinity" is useless; an overly narrow one oversells your knowledge (most
-  people fail this test by being overconfident).
+- **Shock test** — ask: "would I be genuinely shocked if the truth fell outside this
+  range?" If not, **widen it** until the answer is yes — most people's first ranges
+  badly oversell their knowledge. Then check it hasn't gone slack: a range of "0 to
+  infinity" is useless. The test works by *widening from overconfidence*, not by
+  squeezing a range down.
+
+### When the person resists numbers
+
+"I'm not a numbers person" is common and not a dead end — never browbeat. Degrade
+gracefully, in order:
+
+1. **Propose a starter they can push against** — anchored on a base rate, not an
+   arbitrary figure: "most people in this spot land around X — too high or too low
+   for you?" Correcting a number is much easier than producing one.
+2. **Coarse honest buckets** — remote / live possibility / more likely than not /
+   near-certain. Crude shared gradations still beat private vague words.
+3. **Bet framing** — "would you bet on it at even odds?" often unlocks a number from
+   someone who refuses percentages.
+
+A rough honest number beats a precise fake one — and both beat "fair chance."
 
 ## Calibration vs. resolution, and the Brier score
 

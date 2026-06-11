@@ -1,9 +1,11 @@
 # Mental Models — the decision-relevant subset
 
 From Shane Parrish's *Great Mental Models* (Vol. 1–3), filtered to the models that
-actually sharpen a *decision* (the "explain-the-world" models are left out). Use them
-in Phase 3 to surface blind spots. **Pick the 2–3 that fit the situation — don't run
-all 24.** Each is: what it is · when to reach for it · the question it forces.
+actually sharpen a *decision* (the "explain-the-world" models are left out). The
+**Generate options** cluster earns its keep in Phase 1, when the option set looks
+artificially narrow; the rest mostly serve Phase 3's stress-test. **Pick the 2–3
+that fit the situation — never run the full catalogue.** Each is: what it is · when
+to reach for it · the question it forces.
 
 ## Diagnose the situation
 
@@ -99,6 +101,15 @@ all 24.** Each is: what it is · when to reach for it · the question it forces.
 - **The question it forces:** "What's a different route that reaches an equivalent
   outcome?"
 
+### Opportunity cost
+- **What it is:** Choosing anything means *not* choosing everything else; the true
+  cost of an option is the next-best use of the same money, time, or attention. The
+  costs that never appear on an invoice are the ones people forget to count.
+- **Reach for it when:** An option looks good in isolation, or "do nothing" is
+  quietly winning by never being priced.
+- **The question it forces:** "What does saying yes to this make impossible — and is
+  the best of those forgone things worth more than this?"
+
 ### Global vs. local maxima
 - **What it is:** A landscape has one global peak but many smaller local ones.
   "Hill-climbing" can trap you at a local max that feels like success; reaching a
@@ -147,8 +158,9 @@ all 24.** Each is: what it is · when to reach for it · the question it forces.
 
 ### Asymmetry / optionality
 - **What it is:** Seek positions where the downside is capped and small but the
-  upside is large (the cousin of Duke's freeroll). Never take a risk that can take
-  you out of the game.
+  upside is large. Never take a risk that can take you out of the game. (A synthesis
+  across the corpus — GMM's fat-tail caution plus Duke's freeroll — rather than a
+  single named GMM model.)
 - **Reach for it when:** Weighing a bet with uncertain payoff and a bounded cost.
 - **The question it forces:** "Is the downside capped and survivable while the upside
   is large — and am I sized to survive the bad case?"
@@ -218,4 +230,4 @@ all 24.** Each is: what it is · when to reach for it · the question it forces.
 ---
 
 *Pick the 2–3 lenses that fit the decision in front of you. The value is in the
-clash of a few good perspectives, not in a 24-point checklist.*
+clash of a few good perspectives, not in a full-catalogue checklist.*
