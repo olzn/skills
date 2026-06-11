@@ -49,10 +49,10 @@ Tab/nav bar heights are **no longer published** by Apple — never invent them; 
 
 ## 3. Lookup protocol
 
-1. Open `references/index.md` (≤2K tokens) → find the slug's file and anchor. The index also routes **API symbols** (glassEffect, UISheetPresentationController, …) for code-phrased questions, and lists **live-fetch-only slugs** (niche topics answered via `scripts/hig-fetch.sh`, no corpus section).
+1. Open `references/index.md` (≤2K tokens) → classify the slug: **corpus section** (note file + anchor, → step 2), **API symbol** (glassEffect, UISheetPresentationController, … — note the target slug, → step 2), or **live-fetch-only** (niche topics, no corpus section, → step 4).
 2. `grep -n "^## <slug>" references/corpus/<file>.md` → `Read` that file with `offset` at the match, `limit` ≈ section length (sections are 5–80 lines). Do not read whole corpus files for one question. If the loaded section names another slug as load-bearing for *this* answer, load that one section too — one hop max.
 3. Answer with the exact value/term, citing slug + change date from the section's `src:` line. State iOS and macOS separately when they differ — never "generally".
-4. If the section is a stub, the topic is in `versions.md`'s hot list, or the snapshot is expired: fetch live — `scripts/hig-fetch.sh <slug>`. If fetch is unavailable (sandbox/denied), answer from the snapshot **and say so**: "per snapshot 2026-06-10; live verification unavailable here."
+4. If the slug is live-fetch-only, the section is a stub, the topic is in `versions.md`'s hot list, or the snapshot is expired: fetch live — `scripts/hig-fetch.sh <slug>`. If fetch is unavailable (sandbox/denied), answer from the snapshot **and say so**: "per snapshot 2026-06-10; live verification unavailable here."
 
 ## 4. Currency protocol
 

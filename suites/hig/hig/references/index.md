@@ -50,6 +50,9 @@ designing-for-ios · designing-for-macos · designing-for-ipados · mac-catalyst
 ## corpus/tech-ai.md
 machine-learning · generative-ai (checklist: review-ai)
 
+## corpus/tech-integration.md
+maps · voiceover (deepens accessibility; checklist: review-a11y)
+
 ## corpus/tech-commerce.md
 apple-pay · wallet · in-app-purchase · sign-in-with-apple · tap-to-pay-on-iphone (table: brand-buttons; checklist: review-compliance) · icloud · app-clips · game-center
 
@@ -64,7 +67,7 @@ For queries phrased in code, not concepts.
 
 ## Live-fetch-only slugs — routed, not distilled
 Niche topics with no corpus section; answer via `../scripts/hig-fetch.sh <slug>` (offline → say so, no snapshot to fall back on):
-maps · voiceover · airplay · homekit · healthkit · activity-rings · augmented-reality · game-controls · shareplay · nfc · photo-editing · live-photos · imessage-apps-and-stickers · workouts · carekit · researchkit · id-verifier · shazamkit · live-viewing-apps
+airplay · homekit · healthkit · activity-rings · augmented-reality · game-controls · shareplay · nfc · photo-editing · live-photos · imessage-apps-and-stickers · workouts · carekit · researchkit · id-verifier · shazamkit · live-viewing-apps
 
 ## Non-corpus references — when to load
 - **doctrine.md** — any generative task; the Liquid Glass two-layer model, platform character, 8 principles + violation mapping.

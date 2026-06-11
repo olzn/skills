@@ -8,7 +8,7 @@ Three skills, split by workflow:
 - **`hig-design`** — design, prototype, port, or implement Apple-native UI under current constraints (HTML prototypes, Figma, SwiftUI).
 - **`hig-review`** — audit against the HIG: severity-tiered findings (App-Review-enforced / feels broken / feels non-native), exact values, honest per-medium verification limits.
 
-Why it exists: model priors on Apple design are confidently stale — the HIG was rewritten for Liquid Glass (2025) and again at WWDC 2026. This suite ships a dated, distilled snapshot of ~115 iOS/macOS-relevant HIG pages, a stale-priors corrections table, decision trees, review checklists, runtime-measured component metrics, and scripts that make staleness *detectable* instead of silent.
+Why it exists: model priors on Apple design are confidently stale — the HIG was rewritten for Liquid Glass (2025) and again at WWDC 2026. This suite ships a dated, distilled snapshot of ~117 iOS/macOS-relevant HIG pages, a stale-priors corrections table, decision trees, review checklists, runtime-measured component metrics, and scripts that make staleness *detectable* instead of silent. The index also routes code-phrased questions (API symbol → topic) and ~17 niche topics answered by live fetch instead of a corpus section — every iOS/macOS-relevant HIG slug resolves somewhere.
 
 ## Install
 
