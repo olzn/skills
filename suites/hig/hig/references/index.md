@@ -23,6 +23,9 @@ launching · onboarding · loading · managing-accounts (checklist: review-compl
 ## corpus/patterns-interaction.md
 charting-data · collaboration-and-sharing · drag-and-drop (checklist: review-flow) · entering-data · feedback · file-management · modality (tree: trees-containers) · managing-notifications (table: notifications-matrix) · playing-audio (table: audio-haptics) · playing-haptics (table: audio-haptics) · playing-video · searching (version-gated; tree: trees-containers) · undo-and-redo
 
+## corpus/components-layout-content.md
+boxes · collections · column-views · disclosure-controls · labels · lists-and-tables · outline-views · split-views · tab-views · charts · image-views · text-views · web-views (tree: trees-containers)
+
 ## corpus/components-menus-actions.md
 toolbars (absorbed navigation-bars) · buttons · menus · the-menu-bar (checklist: review-screen-macos) · context-menus · edit-menus · pop-up-buttons · pull-down-buttons (tree: trees-controls) · activity-views · dock-menus · home-screen-quick-actions
 
@@ -49,6 +52,19 @@ machine-learning · generative-ai (checklist: review-ai)
 
 ## corpus/tech-commerce.md
 apple-pay · wallet · in-app-purchase · sign-in-with-apple · tap-to-pay-on-iphone (table: brand-buttons; checklist: review-compliance) · icloud · app-clips · game-center
+
+## API symbol → slug
+For queries phrased in code, not concepts.
+- glassEffect · GlassEffectContainer → materials (impl pitfalls: adapters/swiftui) · scrollEdgeEffect / ScrollEdgeEffectStyle → toolbars · backgroundExtensionEffect → sidebars
+- TabBarMinimizeBehavior · tabViewBottomAccessory · sidebarAdaptable · TabViewCustomization · UITab.Placement → tab-bars
+- UISheetPresentationController · presentationDetents → sheets · confirmationDialog → action-sheets · UIAlertController → alerts · NavigationSplitView · UISplitViewController → split-views
+- searchable · UISearchController → search-fields / searching · MenuBarExtra · NSStatusBar → the-menu-bar · UIContextMenuInteraction → context-menus
+- WidgetKit → widgets · ActivityKit → live-activities · AppIntents → app-shortcuts / siri · keyboardShortcut · UIKeyCommand → keyboards
+- PKPaymentButton → apple-pay · ASAuthorizationAppleIDButton → sign-in-with-apple · UICollectionView → collections · List / UITableView → lists-and-tables
+
+## Live-fetch-only slugs — routed, not distilled
+Niche topics with no corpus section; answer via `../scripts/hig-fetch.sh <slug>` (offline → say so, no snapshot to fall back on):
+maps · voiceover · airplay · homekit · healthkit · activity-rings · augmented-reality · game-controls · shareplay · nfc · photo-editing · live-photos · imessage-apps-and-stickers · workouts · carekit · researchkit · id-verifier · shazamkit · live-viewing-apps
 
 ## Non-corpus references — when to load
 - **doctrine.md** — any generative task; the Liquid Glass two-layer model, platform character, 8 principles + violation mapping.

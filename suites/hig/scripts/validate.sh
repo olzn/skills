@@ -47,7 +47,7 @@ check_budget() { # file max label
 for f in "$REFS"/corpus/*.md;     do check_budget "$f" 14336 "corpus";    done
 for f in "$REFS"/checklists/*.md; do check_budget "$f" 10240 "checklist"; done
 for f in "$REFS"/adapters/*.md;   do check_budget "$f" 8192  "adapter";   done
-check_budget "$REFS/index.md"            6144 "index"
+check_budget "$REFS/index.md"            8192 "index"
 check_budget "$REFS/doctrine.md"         8192 "doctrine"
 check_budget "$REFS/trees-containers.md" 8192 "tree"
 check_budget "$REFS/trees-controls.md"   8192 "tree"
@@ -93,7 +93,20 @@ grep -rln 'iOS 27\|macOS 27\|Golden Gate' "$REFS"/corpus/ 2>/dev/null | while re
   [ -z "$ungated" ] || warn "$(basename "$f") has ungated 27/Golden Gate mention(s): $(echo "$ungated" | head -1 | cut -c1-80)"
 done
 
-# --- 8. Live smoke test (skips gracefully offline) ----------------------------
+# --- 8. Index ↔ corpus consistency (router completeness) ----------------------
+# Every corpus file must be listed in index.md, and every corpus section slug
+# must be findable there — a section the index can't route is unreachable.
+for f in "$REFS"/corpus/*.md; do
+  [ -f "$f" ] || continue
+  base=$(basename "$f")
+  grep -q "corpus/$base" "$REFS/index.md" || fail "index.md missing corpus file: $base"
+  grep '^## ' "$f" | sed 's/^## //' | while read -r slug; do
+    grep -qE "(^|[ (·/])$slug($|[ )·/,])" "$REFS/index.md" \
+      || fail "index.md cannot route slug: $slug (in $base)"
+  done
+done
+
+# --- 9. Live smoke test (skips gracefully offline) ----------------------------
 if command -v curl >/dev/null 2>&1 && command -v jq >/dev/null 2>&1; then
   body=$(curl -fsS -m 10 -A "Mozilla/5.0 (Macintosh) hig-suite-validate" \
     "https://developer.apple.com/tutorials/data/design/human-interface-guidelines/buttons.json" 2>/dev/null)

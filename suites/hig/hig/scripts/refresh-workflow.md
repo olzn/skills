@@ -14,6 +14,14 @@ Run from the repo: `suites/hig/`. Runtime scripts live in `hig/scripts/`; `valid
 6. **Validate:** `scripts/validate.sh` (budgets, headers, anchor integrity, inline-copy diffs, live smoke test).
 7. **Smoke-test retrieval:** 3–4 subagent questions on changed topics ("how do iOS tab bars behave?") — answers must cite the new dates.
 
+## Verification discipline (every refresh)
+
+Audit patterns adapted from justinwetch/HIGAgentSkills' update process; their full-corpus audits found that structurally "validated" corpora can still hide source drift.
+
+- **Disposition inventory.** Every slug in Apple's TOC and every existing corpus section gets exactly one classification per refresh: `unchanged` (alert-date precedes snapshot) · `update` · `new-distill` · `new-live-fetch-only` (niche — add it to index.md's live-fetch-only list, no corpus section) · `merged` · `renamed` · `removed-upstream`. Record the non-trivial ones in the refresh commit message. Silence is not a disposition — an unclassified new page is how coverage gaps are born.
+- **Verification schema.** Every changed or new section gets one line from an independent re-read (a second agent or a later pass — never the editor in the same sitting): `slug | ACCEPTED / REVISE / NEEDS-SOURCE-REVIEW | P1 (could mislead) / P2 (affects real use) / P3 (minor) | evidence | fix`. `validate.sh` passing is structural only; it proves nothing about source fidelity.
+- **Expansion rule.** Two or more REVISE verdicts in one corpus file → re-verify that file's remaining sections before closing the refresh. A routing error → check both sides of the route (index entry and section anchor).
+
 ## September flip (27 GA) — one-time structural pass
 
 1. Confirm GA: `hig-whats-new.sh` + check Apple's release notes.
