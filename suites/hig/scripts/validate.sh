@@ -106,7 +106,18 @@ for f in "$REFS"/corpus/*.md; do
   done
 done
 
-# --- 9. Live smoke test (skips gracefully offline) ----------------------------
+# --- 9. API-symbol targets resolve to corpus sections --------------------------
+# Slugs after "→" in the index's API-symbol block must be real corpus anchors
+# (checking them against index.md itself would be vacuous — they live there).
+awk '/^## API symbol/{f=1;next} /^## /{f=0} f' "$REFS/index.md" \
+  | grep -oE '→ [a-z][a-z-]*( / [a-z][a-z-]*)*' | sed 's/→ //' | tr '/' '\n' | tr -d ' ' \
+  | sort -u | while read -r slug; do
+  [ -n "$slug" ] || continue
+  grep -qE "^## $slug$" "$REFS"/corpus/*.md \
+    || fail "API-symbol block targets missing corpus section: $slug"
+done
+
+# --- 10. Live smoke test (skips gracefully offline) ----------------------------
 if command -v curl >/dev/null 2>&1 && command -v jq >/dev/null 2>&1; then
   body=$(curl -fsS -m 10 -A "Mozilla/5.0 (Macintosh) hig-suite-validate" \
     "https://developer.apple.com/tutorials/data/design/human-interface-guidelines/buttons.json" 2>/dev/null)
