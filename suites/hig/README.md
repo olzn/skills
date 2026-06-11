@@ -41,6 +41,6 @@ hig/
 
 ## Maintenance
 
-The HIG changes ~8–13 times a year (June drop, September GA, December x.2). `hig/references/versions.md` carries the snapshot date and expiry windows — past expiry, the skills attach staleness caveats automatically. To refresh: follow `hig/scripts/refresh-workflow.md` (~2–3h supervised agent session). **September 2026 is the big one**: iOS/macOS 27 GA promotes all `promote on GA` delta blocks. Validate with `scripts/validate.sh`.
+The HIG changes ~8–13 times a year (June drop, September GA, December x.2). `hig/references/versions.md` carries the snapshot date and expiry windows — past expiry, the skills attach staleness caveats automatically. To refresh: follow `hig/scripts/refresh-workflow.md` (~2–3h supervised agent session), including its verification discipline: every slug gets a disposition, every changed section gets an independent re-read with a severity verdict — structural validation alone doesn't catch source drift. **September 2026 is the big one**: iOS/macOS 27 GA promotes all `promote on GA` delta blocks. Validate with `scripts/validate.sh` (budgets, headers, index↔corpus routing consistency, API-symbol target resolution, live smoke test).
 
 Provenance discipline throughout: HIG-published values cite slug + change date; numbers Apple doesn't publish (bar heights, capsule dims) are runtime-measured or kit-derived and marked as such — never presented as HIG values. Sources and method: `docs/research/hig/` in this repo.
