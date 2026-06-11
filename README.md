@@ -8,14 +8,21 @@ Personal agent skills for design and product work.
 skills/
 ├── skills/
 │   ├── paper-prototype/
-│   └── pre-build-review/
+│   ├── pre-build-review/
+│   └── decision-coach/
 └── suites/
-    └── ui-craft/
+    ├── ui-craft/
+    │   ├── install.sh
+    │   ├── scripts/
+    │   ├── ui-craft/
+    │   ├── surface/
+    │   └── system/
+    └── hig/
         ├── install.sh
         ├── scripts/
-        ├── ui-craft/
-        ├── surface/
-        └── system/
+        ├── hig/
+        ├── hig-design/
+        └── hig-review/
 ```
 
 - [`skills/`](skills/) contains independently installable single skills.
