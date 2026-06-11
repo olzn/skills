@@ -25,7 +25,7 @@ skills/
 
 - [`paper-prototype`](skills/paper-prototype/) - Create Paper-first UI prototype directions, especially after `grill-with-docs` has settled product and domain decisions. Use it to turn open interface questions into editable Paper artboards before committing to implementation.
 - [`pre-build-review`](skills/pre-build-review/) - Run a direct pre-implementation review for blockers, missing states, accessibility and mobile gaps, awkward data assumptions, and implementation ambiguity.
-- [`decision-coach`](skills/decision-coach/) - Coach a real decision through a 5-phase process (frame & triage, map, calibrate, stress-test, decide & protect) or stress-test already-formed reasoning, grounded in Annie Duke, Philip Tetlock, and Shane Parrish's Great Mental Models. Explicitly invoked; adapts depth to the stakes.
+- [`decision-coach`](skills/decision-coach/) - Coach a real decision, or stress-test reasoning you've already formed, grounded in Annie Duke, Philip Tetlock, and Shane Parrish's Great Mental Models. Routes each decision by stakes and reversibility onto a fast, middle, or deep path (the deep path runs the full frame → map → calibrate → stress-test → decide & protect process). Explicitly invoked.
 
 ## Suites
 
