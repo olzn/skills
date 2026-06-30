@@ -1,6 +1,6 @@
 ---
 name: paper-prototype
-description: Create Paper-first UI prototype directions, especially after grill-with-docs has settled product and domain decisions. Use when the user wants to explore interface directions, mock up a flow, compare visual or interaction approaches, turn product decisions into editable Paper artboards, or says "prototype this", "try a few designs", "explore directions", or "let me play with it". Do not use for business-logic or state-machine prototyping unless the user explicitly asks for Paper output.
+description: Create Paper-first UI prototype directions, especially after grill-with-docs has settled product and domain decisions. Use to explore layout, hierarchy, density, flow, or visual framing as editable Paper artboards before committing to code, to compare 2 to 3 structurally distinct directions, or to turn settled product decisions into an interface. For throwaway HTML explorations rather than editable Paper frames, use the prototype skill instead. Do not use for business-logic or state-machine prototyping unless the user explicitly asks for Paper output.
 ---
 
 # Paper Prototype
@@ -74,7 +74,8 @@ If fidelity is ambiguous, recommend one level based on the design question and a
 Before creating artboards, state:
 
 - **Question:** what are we trying to learn?
-- **Medium:** Paper by default.
+- **Already decided:** the constraints that must carry through.
+- **Still open:** what the variants are allowed to disagree about.
 - **Fidelity:** sketch, structural, product-realistic, polished, or implementation-adjacent.
 - **Exit condition:** what answer lets us stop?
 
