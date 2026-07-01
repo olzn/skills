@@ -4,6 +4,7 @@ Independently installable single skills.
 
 ## Available Skills
 
+- [`grill-with-docs`](grill-with-docs/) - Grill a plan against the domain model and sharpen terminology into CONTEXT.md and ADRs before design.
 - [`prototype`](prototype/) - Generate N different HTML implementations of a UI feature, preview them in a gallery, and iterate. Quietly flags a favourite; does not pick, research, or ship.
 - [`paper-prototype`](paper-prototype/) - Create Paper-first UI prototype directions before committing to implementation.
 - [`pre-build-review`](pre-build-review/) - Red-team a settled plan before coding and decide whether it is ready to build.

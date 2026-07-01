@@ -7,6 +7,7 @@ Personal agent skills for design and product work.
 ```text
 skills/
 ├── skills/
+│   ├── grill-with-docs/
 │   ├── prototype/
 │   ├── paper-prototype/
 │   ├── pre-build-review/
@@ -33,6 +34,7 @@ skills/
 
 ## Standalone Skills
 
+- [`grill-with-docs`](skills/grill-with-docs/) - Grill a plan against the existing domain model, sharpen fuzzy terminology into canonical terms, and capture them in CONTEXT.md and ADRs as decisions crystallise. Stage 1 of the design pipeline.
 - [`prototype`](skills/prototype/) - Generate N different single-file HTML implementations of a UI feature, preview them in a gallery, and iterate. Quietly flags a favourite inside the preview; deliberately does not pick a winner, research, implement, verify, or open a PR.
 - [`paper-prototype`](skills/paper-prototype/) - Create Paper-first UI prototype directions, especially after `grill-with-docs` has settled product and domain decisions. Use it to turn open interface questions into editable Paper artboards before committing to implementation.
 - [`pre-build-review`](skills/pre-build-review/) - Run a direct pre-implementation review for blockers, missing states, accessibility and mobile gaps, awkward data assumptions, and implementation ambiguity.
@@ -44,6 +46,27 @@ skills/
 
 - [`ui-craft`](suites/ui-craft/) - A coordinator skill plus two domain suites for building web interfaces with stronger structure, clearer naming, and better surface quality.
 - [`hig`](suites/hig/) - Three skills (`hig` lookup/routing, `hig-design` build-time guidance, `hig-review` audits) that keep iOS and macOS designs and prototypes aligned with Apple's Human Interface Guidelines: Liquid Glass-current, provenance-marked numbers, staleness made detectable, every iOS/macOS-relevant slug routable (corpus, API symbols, or live fetch). Installs like ui-craft (`sh suites/hig/install.sh`); validate with `sh suites/hig/scripts/validate.sh`.
+
+## Installing everything (linked)
+
+Symlink every standalone skill into your agent skills folders and install the
+`ui-craft` suite, so this repo is the single source of truth and edits are picked up
+without reinstalling:
+
+```sh
+sh link.sh
+```
+
+This links into `~/.claude/skills`, `~/.codex/skills`, and `~/.agents/skills`. Target a
+single directory with `TARGET_DIR`:
+
+```sh
+TARGET_DIR=.claude/skills sh link.sh
+```
+
+Re-run only when you add a new standalone skill; edits to existing skills are live
+through the symlinks. The `ui-craft` suite is copy-installed, so re-run after changing
+the suite.
 
 ## Installing UI Craft
 
