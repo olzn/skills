@@ -43,7 +43,7 @@ skills/
 ## Suites
 
 - [`ui-craft`](suites/ui-craft/) - A coordinator skill plus two domain suites for building web interfaces with stronger structure, clearer naming, and better surface quality.
-- [`hig`](suites/hig/) - Three skills (`hig` lookup/routing, `hig-design` build-time guidance, `hig-review` audits) that keep iOS and macOS designs and prototypes aligned with Apple's Human Interface Guidelines — Liquid Glass-current, provenance-marked numbers, staleness made detectable, every iOS/macOS-relevant slug routable (corpus, API symbols, or live fetch). Installs like ui-craft (`sh suites/hig/install.sh`); validate with `sh suites/hig/scripts/validate.sh`.
+- [`hig`](suites/hig/) - Three skills (`hig` lookup/routing, `hig-design` build-time guidance, `hig-review` audits) that keep iOS and macOS designs and prototypes aligned with Apple's Human Interface Guidelines: Liquid Glass-current, provenance-marked numbers, staleness made detectable, every iOS/macOS-relevant slug routable (corpus, API symbols, or live fetch). Installs like ui-craft (`sh suites/hig/install.sh`); validate with `sh suites/hig/scripts/validate.sh`.
 
 ## Installing UI Craft
 
