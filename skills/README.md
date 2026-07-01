@@ -11,3 +11,4 @@ Independently installable single skills.
 - [`post-build-review`](post-build-review/) - Check a built change against its intent and promised states, then assemble the handoff evidence. The read-only mirror of `pre-build-review`.
 - [`polish-fix`](polish-fix/) - Land one small UI papercut as a tiny, easy-to-approve PR with a before/after screenshot.
 - [`decision-coach`](decision-coach/) - Coach a real decision, or stress-test reasoning you've already formed, routing by stakes and reversibility onto a fast, middle, or deep path. Explicitly invoked.
+- [`handoff`](handoff/) - Compact the current conversation into a Markdown handoff another session or agent can resume from, saved to a durable, harness-agnostic path. Captures state and next steps, not a transcript.
