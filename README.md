@@ -13,7 +13,8 @@ skills/
 │   ├── pre-build-review/
 │   ├── post-build-review/
 │   ├── polish-fix/
-│   └── decision-coach/
+│   ├── decision-coach/
+│   └── handoff/
 └── suites/
     ├── ui-craft/
     │   ├── install.sh
@@ -41,6 +42,7 @@ skills/
 - [`post-build-review`](skills/post-build-review/) - Run a read-only post-implementation review that checks a built change against its intent and promised states, runs lint, typecheck, tests, and build, and assembles the handoff evidence before a PR. The mirror of `pre-build-review`.
 - [`polish-fix`](skills/polish-fix/) - Land one small UI papercut as a tiny, easy-to-approve PR with a before/after screenshot, the low-ceremony path for fixes too small to warrant a session.
 - [`decision-coach`](skills/decision-coach/) - Coach a real decision, or stress-test reasoning you've already formed, grounded in Annie Duke, Philip Tetlock, and Shane Parrish's Great Mental Models. Routes each decision by stakes and reversibility onto a fast, middle, or deep path (the deep path runs the full frame → map → calibrate → stress-test → decide & protect process). Explicitly invoked.
+- [`handoff`](skills/handoff/) - Compact the current conversation into a single Markdown handoff another session or agent can resume from, saved to a durable, harness-agnostic path (`$HANDOFF_DIR`, default `~/handoffs`) with a timestamped name. Captures goal, state, next step, and where to resume, not a transcript.
 
 ## Suites
 
