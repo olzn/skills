@@ -7,9 +7,11 @@ Personal agent skills for design and product work.
 ```text
 skills/
 ├── skills/
+│   ├── prototype/
 │   ├── paper-prototype/
 │   ├── pre-build-review/
 │   ├── post-build-review/
+│   ├── polish-fix/
 │   └── decision-coach/
 └── suites/
     ├── ui-craft/
@@ -31,9 +33,11 @@ skills/
 
 ## Standalone Skills
 
+- [`prototype`](skills/prototype/) - Generate N different single-file HTML implementations of a UI feature, preview them in a gallery, and iterate. Quietly flags a favourite inside the preview; deliberately does not pick a winner, research, implement, verify, or open a PR.
 - [`paper-prototype`](skills/paper-prototype/) - Create Paper-first UI prototype directions, especially after `grill-with-docs` has settled product and domain decisions. Use it to turn open interface questions into editable Paper artboards before committing to implementation.
 - [`pre-build-review`](skills/pre-build-review/) - Run a direct pre-implementation review for blockers, missing states, accessibility and mobile gaps, awkward data assumptions, and implementation ambiguity.
 - [`post-build-review`](skills/post-build-review/) - Run a read-only post-implementation review that checks a built change against its intent and promised states, runs lint, typecheck, tests, and build, and assembles the handoff evidence before a PR. The mirror of `pre-build-review`.
+- [`polish-fix`](skills/polish-fix/) - Land one small UI papercut as a tiny, easy-to-approve PR with a before/after screenshot, the low-ceremony path for fixes too small to warrant a session.
 - [`decision-coach`](skills/decision-coach/) - Coach a real decision, or stress-test reasoning you've already formed, grounded in Annie Duke, Philip Tetlock, and Shane Parrish's Great Mental Models. Routes each decision by stakes and reversibility onto a fast, middle, or deep path (the deep path runs the full frame → map → calibrate → stress-test → decide & protect process). Explicitly invoked.
 
 ## Suites
