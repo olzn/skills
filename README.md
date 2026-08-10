@@ -11,10 +11,13 @@ skills/
 │   ├── prototype/
 │   ├── paper-prototype/
 │   ├── pre-build-review/
+│   ├── build/
 │   ├── post-build-review/
+│   ├── wrapup/
 │   ├── polish-fix/
 │   ├── decision-coach/
-│   └── handoff/
+│   ├── handoff/
+│   └── harness-config/
 └── suites/
     ├── ui-craft/
     │   ├── install.sh
@@ -35,14 +38,17 @@ skills/
 
 ## Standalone Skills
 
-- [`grill-with-docs`](skills/grill-with-docs/) - Grill a plan against the existing domain model, sharpen fuzzy terminology into canonical terms, and capture them in CONTEXT.md and ADRs as decisions crystallise. Stage 1 of the design pipeline.
+- [`grill-with-docs`](skills/grill-with-docs/) - Grill a plan against the existing domain model, sharpen fuzzy terminology into canonical terms, and capture them in CONTEXT.md and ADRs as decisions crystallise. Stage 1 of the design pipeline. Derived from Matt Pocock's MIT-licensed [`grill-with-docs`, `grilling`, and `domain-modeling` skills](https://github.com/mattpocock/skills).
 - [`prototype`](skills/prototype/) - Generate N different single-file HTML implementations of a UI feature, preview them in a gallery, and iterate. Quietly flags a favourite inside the preview; deliberately does not pick a winner, research, implement, verify, or open a PR.
 - [`paper-prototype`](skills/paper-prototype/) - Create Paper-first UI prototype directions, especially after `grill-with-docs` has settled product and domain decisions. Use it to turn open interface questions into editable Paper artboards before committing to implementation.
 - [`pre-build-review`](skills/pre-build-review/) - Run a direct pre-implementation review for blockers, missing states, accessibility and mobile gaps, awkward data assumptions, and implementation ambiguity.
+- [`build`](skills/build/) - Take a scoped request or chosen design direction (Paper, HTML, or Figma) to a verified candidate ready for the owner's local review. Implementation is bracketed by `pre-build-review` and `post-build-review`, and the reviewed tree is fingerprinted so the ship step can prove what was reviewed is what ships. Never self-ships.
 - [`post-build-review`](skills/post-build-review/) - Run a read-only post-implementation review that checks a built change against its intent and promised states, runs lint, typecheck, tests, and build, and assembles the handoff evidence before a PR. The mirror of `pre-build-review`.
+- [`wrapup`](skills/wrapup/) - Close out a feature worktree once its PR has merged — confirm the merge, verify the deploy where one applies, remove the worktree, and clean branches. Ownership and clean-and-ahead guards, an `--abandon` mode with inverted guards, and a detached reaper for when the session lives inside the worktree it is removing.
 - [`polish-fix`](skills/polish-fix/) - Land one small UI papercut as a tiny, easy-to-approve PR with a before/after screenshot, the low-ceremony path for fixes too small to warrant a session.
 - [`decision-coach`](skills/decision-coach/) - Coach a real decision, or stress-test reasoning you've already formed, grounded in Annie Duke, Philip Tetlock, and Shane Parrish's Great Mental Models. Routes each decision by stakes and reversibility onto a fast, middle, or deep path (the deep path runs the full frame → map → calibrate → stress-test → decide & protect process). Explicitly invoked.
 - [`handoff`](skills/handoff/) - Compact the current conversation into a single Markdown handoff another session or agent can resume from, saved to a durable, harness-agnostic path (`$HANDOFF_DIR`, default `~/handoffs`) with a timestamped name. Captures goal, state, next step, and where to resume, not a transcript.
+- [`harness-config`](skills/harness-config/) - Keep agent configuration — instructions, skills, commands, agents, MCP registrations, hooks, and permissions — aligned across more than one harness (e.g. Claude Code and Codex) from a single canonical source, with generated per-harness projections you never edit by hand.
 
 ## Suites
 
