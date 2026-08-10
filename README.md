@@ -65,8 +65,17 @@ without reinstalling:
 sh link.sh
 ```
 
-This links into `~/.claude/skills`, `~/.codex/skills`, and `~/.agents/skills`. Target a
-single directory with `TARGET_DIR`:
+This links into `~/.claude/skills`, `~/.codex/skills`, and `~/.agents/skills`.
+
+The first two are each harness's own discovery folder. `~/.agents/skills` is
+different: it is a harness-neutral home for agent configuration, so skills
+linked there survive switching or adding harnesses — a new tool reads (or is
+projected from) the same tree instead of needing its own install. The
+[`harness-config`](skills/harness-config/) skill documents this
+one-canonical-source pattern; if you don't keep an `~/.agents` tree, the two
+harness folders are all you need.
+
+Target a single directory with `TARGET_DIR`:
 
 ```sh
 TARGET_DIR=.claude/skills sh link.sh
