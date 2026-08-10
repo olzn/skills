@@ -61,4 +61,4 @@ Each finding names the stage that owns it, so a `No-go` returns to the right pla
 - Prefer concrete scenarios over abstract warnings.
 - Do not invent new product direction unless the existing plan is broken.
 - Do not block on details that are cheap and safe to resolve during implementation.
-- If the user asks to continue into implementation, resolve blockers or get explicit confirmation before building.
+- If the user asks to continue into implementation, resolve blockers or get explicit confirmation before building; an explicit owner override is recorded by the build skill as `Go with changes`.
