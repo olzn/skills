@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: Generate N different HTML implementations of a UI feature, preview them, and iterate a few times, a fast "show me the options" loop for exploring what a feature could look like. Default N is 5. Use when the user wants to prototype a UI, explore or compare designs for a feature, says "prototype this", "try a few designs", "explore some options for X", "what could this look like", or hands over a feature with no spec. Marks a quiet pick but does NOT collapse to one winner, research, implement, verify, or open a PR; a chosen direction hands off to the build skill, with /verify and /code-review checking the result. For editable Paper artboards rather than throwaway HTML, use paper-prototype instead.
+description: Generate N different HTML implementations of a UI feature, preview them, and iterate a few times, a fast "show me the options" loop for exploring what a feature could look like. Default N is 5. Use when the user wants to prototype a UI, explore or compare designs for a feature, says "prototype this", "try a few designs", "explore some options for X", "what could this look like", or hands over a feature with no spec. Marks a quiet pick but does NOT collapse to one winner, research, implement, verify, or open a PR; a chosen direction hands off to the build skill, whose review gates check the result. For editable Paper artboards rather than throwaway HTML, use paper-prototype instead.
 ---
 
 # Prototype
@@ -8,8 +8,8 @@ description: Generate N different HTML implementations of a UI feature, preview 
 `prototype` answers one question, **what could this look like?**, with `N`
 previewable HTML takes you can click through. It explores and quietly flags a
 favourite. It does **not** collapse to one option, research, implement, verify, or
-ship. When a direction wins, hand it to the `build` skill (then `/verify` and
-`/code-review`); the HTML here is throwaway.
+ship. When a direction wins, hand it to the `build` skill, whose pre-build and
+post-build reviews check the result; the HTML here is throwaway.
 
 ## Inputs
 
@@ -67,6 +67,6 @@ chooses one or edits toward it.
 That's the whole skill. Heavier steps (researching patterns first, implementing the
 winner for real, opening a PR with a screenshot) stay **at prompt time** when the
 user asks for them, exactly as a person would layer them on. They are deliberately
-not baked in. Hand a chosen direction to the `build` skill; `/verify` and
-`/code-review` check the result. The recommendation is the single opinion this
+not baked in. Hand a chosen direction to the `build` skill; its review gates
+check the result. The recommendation is the single opinion this
 skill expresses, and it expresses it quietly.

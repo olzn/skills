@@ -53,7 +53,7 @@ Then provide only the useful detail:
 - `Recommended changes`: brief edits to the plan, brief, or prototype.
 - `Next step`: the single next action.
 
-Each finding names the stage that owns it, so a `No-go` returns to the right place: product or domain uncertainty to `grill-with-docs`, UI direction to `paper-prototype`, implementation ambiguity to the build plan. A `Go` hands off to `ui-craft` to build.
+Each finding names the stage that owns it, so a `No-go` returns to the right place: product or domain uncertainty to `grill-with-docs`, UI direction to `paper-prototype`, implementation ambiguity to the build plan. A `Go` hands off to implementation — the `build` skill, applying the `ui-craft` suite for user-facing work.
 
 ## Rules
 
