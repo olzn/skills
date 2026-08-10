@@ -17,8 +17,12 @@ MAIN=$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")
 ```
 
 If the common dir is itself a bare repository (a `repo.git` hub with every
-checkout as a worktree), use it directly as `$MAIN` and skip the trunk pull
-in step 4 — there is no primary checkout to update.
+checkout as a worktree), use it directly as `$MAIN` and take step 4's fetch
+path — there is no checkout to pull.
+
+Forge commands here assume a GitHub remote and the `gh` CLI — translate
+them for another forge. A cold session that doesn't know the PR number
+recovers it with `gh pr list --head <branch>`.
 
 ## Not this skill
 
@@ -71,9 +75,14 @@ discard is theirs. Confirm the mode before running it.
 
 3. **Guard the worktree.** Before removing, from the worktree: working
    tree clean (`git status --porcelain` empty) and no local commits
-   ahead (`git log --oneline origin/<branch>..HEAD` empty). Either
-   non-empty → surface what's there and stop; never `--force` the
-   removal.
+   ahead (`git log --oneline origin/<branch>..HEAD` empty). Gate the
+   second check on `git rev-parse --verify --quiet origin/<branch>` —
+   no origin ref (never pushed, or pruned after the merge) means that
+   range is meaningless; compare against the merge-base with the
+   default branch instead:
+   `git log --oneline "$(git merge-base origin/<default-branch> HEAD)"..HEAD`.
+   Either non-empty → surface what's there and stop; never `--force`
+   the removal.
 
    Both checks can pass on a worktree that still refuses to delete.
    `git worktree remove` deregisters first and deletes second, so a
@@ -81,7 +90,7 @@ discard is theirs. Confirm the mode before running it.
    tracks. Two causes, neither visible to `status`:
 
    - **Live processes rooted in the worktree**:
-     `ps -eo pid,comm,args | grep "<worktree-path>" | grep -v grep`.
+     `ps -eo pid,comm,args | grep -F "<worktree-path>" | grep -v grep`.
      Dev servers, file watchers, and language servers race the
      recursive delete. Discount matches that merely *mention* the path
      in their arguments — a global daemon that once took the path as an
@@ -105,8 +114,11 @@ discard is theirs. Confirm the mode before running it.
    Recover a half-failed removal with `rm -rf "$WT"` then
    `git -C "$MAIN" worktree prune`.
 
-4. **Sync trunk**: `git -C "$MAIN" pull --ff-only origin <default-branch>`.
-   Always name the refspec — on a large remote a bare `pull` fetches
+4. **Sync trunk.** If `$MAIN` has the default branch checked out:
+   `git -C "$MAIN" pull --ff-only origin <default-branch>`. Anything
+   else checked out → update the ref without touching the checkout:
+   `git -C "$MAIN" fetch origin <default-branch>:<default-branch>`.
+   Always name the refspec — on a large remote a bare fetch pulls
    every ref and can hang for minutes. Failure is a warning, not a
    stop; teardown does not depend on it.
 
@@ -120,7 +132,11 @@ discard is theirs. Confirm the mode before running it.
        '/^worktree /{p=substr($0,10)} $0==b{print p}')
    # substr, not $2: a worktree path containing spaces must survive intact —
    # everything below hands $WT to remove/rm commands.
+   [ -n "$WT" ] || { echo "no worktree found for <branch>"; exit 1; }
    ```
+
+   An empty `$WT` means no worktree holds the branch — stop and report;
+   never feed an empty path to the removal commands below.
 
    Session outside the worktree → remove directly:
 
@@ -144,10 +160,13 @@ discard is theirs. Confirm the mode before running it.
    BRANCH=<branch>
    MARKER_DIR="$(git -C "$MAIN" rev-parse --path-format=absolute --git-common-dir)/pending-cleanup"
    mkdir -p "$MARKER_DIR"
-   MARKER="$MARKER_DIR/${BRANCH//\//-}"
-   printf 'branch=%s\npid=%s\nguards=passed\n' "$BRANCH" "$SESSION_PID" > "$MARKER"
+   MARKER="$MARKER_DIR/${BRANCH//\//-}-$(printf %s "$BRANCH" | shasum -a 256 | cut -c1-8)"
+   # hash suffix: slash-to-dash mangling alone lets a/b-c and a-b/c collide
+   MODE_LINE="guards=passed"
+   printf 'branch=%s\npid=%s\n%s\n' "$BRANCH" "$SESSION_PID" "$MODE_LINE" > "$MARKER"
    (nohup bash -c '
      PID=$1 MAIN=$2 WT=$3 BRANCH=$4 MARKER=$5
+     cd "$MAIN" || exit 1   # cwd is the worktree being deleted — leave it first
      LOG="$MARKER.log"
      kill -0 "$PID" 2>/dev/null || { echo "dead pid at spawn; never reap" >>"$LOG"; exit 1; }
      while kill -0 "$PID" 2>/dev/null; do sleep 15; done
@@ -155,8 +174,11 @@ discard is theirs. Confirm the mode before running it.
      FORCE=""; grep -q "^mode=abandon$" "$MARKER" 2>/dev/null && FORCE="--force"
      for attempt in 1 2 3; do
        if git -C "$MAIN" worktree remove $FORCE "$WT" >>"$LOG" 2>&1; then
-         git -C "$MAIN" branch -D "$BRANCH" >>"$LOG" 2>&1
-         rm -f "$MARKER" "$LOG"
+         if git -C "$MAIN" branch -D "$BRANCH" >>"$LOG" 2>&1; then
+           rm -f "$MARKER" "$LOG"
+         else
+           echo "worktree removed but branch $BRANCH survived" >>"$LOG"
+         fi
          exit 0
        fi
        sleep 5
@@ -195,6 +217,12 @@ dirty/ahead state, show it and make the user own the loss.
    `git diff origin/<default-branch>...HEAD --stat` (the branch's whole
    delta vs trunk).
 
+   Gate the unpushed check on
+   `git rev-parse --verify --quiet origin/<branch>`. No origin ref here
+   means the entire branch is unpushed and will be lost — say so, and
+   list it with
+   `git log --oneline "$(git merge-base origin/<default-branch> HEAD)"..HEAD`.
+
 2. **Explicit confirmation (hard stop).** Present the summary and wait
    for an unambiguous yes to "permanently discard this". Never proceed
    on the original "--abandon" alone — the user asked before seeing the
@@ -218,19 +246,12 @@ dirty/ahead state, show it and make the user own the loss.
    The remote delete is the line the ownership guard forbids on a
    colleague's branch. Drop it there; the first two still run.
 
-   Session inside it → arm the reaper per default step 5, but the
-   marker must carry `mode=abandon` — the reaper gates `--force` on
+   Session inside it → set `MODE_LINE="mode=abandon"` and run default
+   step 5's block otherwise unchanged. The reaper gates `--force` on
    that literal line, and an abandoned worktree is dirty by definition,
-   so without it every removal attempt fails and the worktree strands
-   while the report claims cleanup is under way. `guards=passed` and
-   `mode=abandon` are mutually exclusive — this mode never writes the
-   former:
-
-   ```bash
-   printf 'branch=%s\npid=%s\nmode=abandon\n' "$BRANCH" "$SESSION_PID" > "$MARKER"
-   ```
-
-   Same validated-pid check and `nohup` spawn as default step 5.
+   so with `guards=passed` every removal attempt fails and the worktree
+   strands while the report claims cleanup is under way. The two lines
+   are mutually exclusive — this mode never writes `guards=passed`.
 
 5. **Report**: what was discarded (commit count + diffstat), PR closed
    (if any), worktree and branches removed. If you keep a workstream
