@@ -16,6 +16,10 @@ Resolve it from git, never assume a path:
 MAIN=$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")
 ```
 
+If the common dir is itself a bare repository (a `repo.git` hub with every
+checkout as a worktree), use it directly as `$MAIN` and skip the trunk pull
+in step 4 — there is no primary checkout to update.
+
 ## Not this skill
 
 | Situation | Use instead |
@@ -58,13 +62,12 @@ discard is theirs. Confirm the mode before running it.
    Not `MERGED` → report and stop; nothing below is safe. (Feature
    dropped rather than merged → that's `--abandon`, not a bypass.)
 
-2. **Deploy check (when the merge ships a deployable service).** Verify
-   the merge actually deployed before declaring done, using your
-   project's health endpoint or deploy-status tooling — e.g. a health
-   endpoint that reports the running SHA, confirmed with
-   `git merge-base --is-ancestor <merge-sha> <running-sha>` after
-   `git fetch origin`. Never report a merge as live on the strength of
-   the merge alone. Skip only when nothing deploys from this change.
+2. **Deploy check (when the merge ships a deployable service).** Confirm
+   the deployed build actually contains the merge before declaring it
+   done — compare whatever build identifier the service exposes (a
+   version endpoint, release tag, or deploy dashboard) against the merge
+   commit, and treat "the PR merged" as evidence of nothing by itself.
+   Skip only when nothing deploys from this change.
 
 3. **Guard the worktree.** Before removing, from the worktree: working
    tree clean (`git status --porcelain` empty) and no local commits
@@ -113,7 +116,10 @@ discard is theirs. Confirm the mode before running it.
 
    ```bash
    WT=$(git -C "$MAIN" worktree list --porcelain \
-     | awk -v b="branch refs/heads/<branch>" '/^worktree /{p=$2} $0==b{print p}')
+     | awk -v b="branch refs/heads/<branch>" \
+       '/^worktree /{p=substr($0,10)} $0==b{print p}')
+   # substr, not $2: a worktree path containing spaces must survive intact —
+   # everything below hands $WT to remove/rm commands.
    ```
 
    Session outside the worktree → remove directly:
@@ -142,13 +148,20 @@ discard is theirs. Confirm the mode before running it.
    printf 'branch=%s\npid=%s\nguards=passed\n' "$BRANCH" "$SESSION_PID" > "$MARKER"
    (nohup bash -c '
      PID=$1 MAIN=$2 WT=$3 BRANCH=$4 MARKER=$5
-     kill -0 "$PID" 2>/dev/null || exit 1   # dead pid at spawn = wrong pid; never reap
+     LOG="$MARKER.log"
+     kill -0 "$PID" 2>/dev/null || { echo "dead pid at spawn; never reap" >>"$LOG"; exit 1; }
      while kill -0 "$PID" 2>/dev/null; do sleep 15; done
      sleep 5
-     FORCE=""; grep -q "^mode=abandon$" "$MARKER" && FORCE="--force"
-     git -C "$MAIN" worktree remove $FORCE "$WT" \
-       && git -C "$MAIN" branch -D "$BRANCH" \
-       && rm -f "$MARKER"
+     FORCE=""; grep -q "^mode=abandon$" "$MARKER" 2>/dev/null && FORCE="--force"
+     for attempt in 1 2 3; do
+       if git -C "$MAIN" worktree remove $FORCE "$WT" >>"$LOG" 2>&1; then
+         git -C "$MAIN" branch -D "$BRANCH" >>"$LOG" 2>&1
+         rm -f "$MARKER" "$LOG"
+         exit 0
+       fi
+       sleep 5
+     done
+     echo "gave up after 3 attempts; worktree left in place" >>"$LOG"
    ' _ "$SESSION_PID" "$MAIN" "$WT" "$BRANCH" "$MARKER" \
      >/dev/null 2>&1 &)   # subshell double-fork — macOS has no setsid
    ```
