@@ -21,11 +21,15 @@ decision, it isn't a polish fix; stop and treat it as real work.
    surrounding code and tokens: no new abstractions, no drive-by edits, no scope
    creep into nearby nits (those are *separate* polish fixes).
 3. **Capture before/after.** Screenshot the element or page in both states, so
-   the PR is reviewable at a glance without anyone running it.
+   the PR is reviewable at a glance without anyone running it. Use whatever browser
+   automation the harness provides (e.g. a Playwright or browser MCP); if none is
+   available, say so in the PR and describe the change textually instead of blocking.
 4. **Open a small PR.** Branch, commit (end the message with the project's
    `Co-Authored-By` line if one is configured), and open a PR whose body is just the
-   one-line description plus the before/after images. Title it so a reviewer can
-   approve on sight.
+   one-line description plus the before/after images. Upload the screenshots
+   wherever your workflow can host them (a gist, an image host) and link them in
+   the body; if nothing is available, leave a placeholder and ask the user to
+   attach them. Title it so a reviewer can approve on sight.
 
 ## Keep it cheap
 

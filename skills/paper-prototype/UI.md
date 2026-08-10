@@ -4,7 +4,7 @@ Use this when the question is **"what should this interface look, feel, or flow 
 
 Default to Paper via MCP before writing code. The canvas is the shared design surface: the user can inspect, rearrange, edit, delete, or combine ideas directly before anything is committed to the codebase.
 
-This skill is most useful after `grill-with-docs`: product and domain decisions are settled enough that the remaining work is to explore interface direction.
+This workflow is most useful after `grill-with-docs` (a companion skill in this repo): product and domain decisions are settled enough that the remaining work is to explore interface direction.
 
 ## When this is the right shape
 
@@ -35,7 +35,7 @@ Recommend a logic prototype or code spike instead. Do not silently fall back to 
 
 ### 1. Load Paper context
 
-Before using other Paper tools in a session:
+The tools below come from the Paper MCP server (paper.design's official MCP). Before using other Paper tools in a session:
 
 1. Call `get_guide({ topic: "paper-mcp-instructions" })`.
 2. Call `get_basic_info`.
@@ -102,13 +102,11 @@ Bad:
 
 ### 5. Propose directions before drawing
 
-Name the intended directions before creating them so the user can steer. Default to these three:
+Name the intended directions before creating them so the user can steer. Default to 3 directions; use 2 for a small question; never more than 5. The default three:
 
 - **System-native:** closest to existing product patterns and component constraints.
 - **Decision-forward:** organised around the user's primary decision or commitment.
 - **High-leverage divergence:** a meaningfully different structure, flow, or interaction model.
-
-Use 2 directions for small questions. Avoid more than 5.
 
 ### 6. Create distinct Paper directions
 

@@ -31,8 +31,9 @@ of the feature. Three rules keep the set useful:
    name the single axis they vary along (density, hierarchy, mood, disclosure) and
    state it, so the comparison means something.
 2. **Respect existing conventions.** Before generating, glance at the project for
-   design tokens, component conventions, and a `CONTEXT.md`. Match them so the
-   options feel like they belong in *this* product, not generic demos.
+   design tokens, component conventions, and a `CONTEXT.md`, if the project keeps
+   one (see the `grill-with-docs` skill). Match them so the options feel like they
+   belong in *this* product, not generic demos.
 3. **Stress-content the previews.** Populate with realistic *and* edge-case content:
    long strings, empty and error states, narrow widths, keyboard focus. The point
    of a real preview is to surface problems a static mockup hides, while you're
@@ -41,8 +42,10 @@ of the feature. Three rules keep the set useful:
 ## Preview
 
 Emit one small `index.html` gallery that links to (or embeds) all `N` files, so
-there is a single surface to look through. Print the file paths too, so they can be
-opened directly or via whatever one command the project already uses.
+there is a single surface to look through. Write the `N` files and the gallery to a
+gitignored scratch or temp directory, never committed and never left polluting
+`git status`. Print the file paths too, so they can be opened directly or with
+whatever preview command the project already uses.
 
 ## Quietly mark the recommendation
 

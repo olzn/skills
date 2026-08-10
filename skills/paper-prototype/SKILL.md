@@ -1,13 +1,15 @@
 ---
 name: paper-prototype
-description: Create Paper-first UI prototype directions, especially after grill-with-docs has settled product and domain decisions. Use to explore layout, hierarchy, density, flow, or visual framing as editable Paper artboards before committing to code, to compare 2 to 3 structurally distinct directions, or to turn settled product decisions into an interface. For throwaway HTML explorations rather than editable Paper frames, use the prototype skill instead. Do not use for business-logic or state-machine prototyping unless the user explicitly asks for Paper output.
+description: Create Paper-first UI prototype directions, especially after grill-with-docs has settled product and domain decisions. Use to explore layout, hierarchy, density, flow, or visual framing as editable Paper artboards before committing to code, to compare structurally distinct directions, or to turn settled product decisions into an interface. For throwaway HTML explorations rather than editable Paper frames, use the prototype skill instead. Do not use for business-logic or state-machine prototyping unless the user explicitly asks for Paper output.
 ---
 
 # Paper Prototype
 
+Paper is paper.design's design canvas. This skill drives it through the Paper MCP server (paper.design's official MCP), which must be connected.
+
 Paper prototypes are **throwaway UI explorations that answer one design question**.
 
-The main job is to turn settled product/domain decisions into 2 to 3 editable Paper directions so the user can make the design call before implementation.
+The main job is to turn settled product/domain decisions into editable Paper directions so the user can make the design call before implementation. Default to 3 directions; use 2 for a small question; never more than 5.
 
 ## Default Workflow
 
