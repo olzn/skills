@@ -83,7 +83,8 @@ Run `post-build-review` automatically after implementation.
   check findings, then run the review again.
 - Return product, scope, or interface uncertainty to the stage named by the
   review: `grill-with-docs` for domain questions, `paper-prototype` or
-  `prototype` for design direction.
+  `prototype` for design direction, `pre-build-review` for plan-level state
+  or scope gaps.
 - Preserve subjective craft notes for the owner rather than silently
   redesigning.
 - Stop and escalate risky auth, permissions, API, routing, or data surfaces
