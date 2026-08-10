@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: Generate N different HTML implementations of a UI feature, preview them, and iterate a few times, a fast "show me the options" loop for exploring what a feature could look like. Default N is 5. Use when the user wants to prototype a UI, explore or compare designs for a feature, says "prototype this", "try a few designs", "explore some options for X", "what could this look like", or hands over a feature with no spec. Surfaces a quiet recommendation inside the preview but does NOT collapse to one winner, do research, implement, verify, or open a PR; those are layered on at prompt time, or handed to /verify and /code-review.
+description: Generate N different HTML implementations of a UI feature, preview them, and iterate a few times, a fast "show me the options" loop for exploring what a feature could look like. Default N is 5. Use when the user wants to prototype a UI, explore or compare designs for a feature, says "prototype this", "try a few designs", "explore some options for X", "what could this look like", or hands over a feature with no spec. Marks a quiet pick but does NOT collapse to one winner, research, implement, verify, or open a PR; a chosen direction hands off to the build skill, with /verify and /code-review checking the result. For editable Paper artboards rather than throwaway HTML, use paper-prototype instead.
 ---
 
 # Prototype
@@ -8,8 +8,8 @@ description: Generate N different HTML implementations of a UI feature, preview 
 `prototype` answers one question, **what could this look like?**, with `N`
 previewable HTML takes you can click through. It explores and quietly flags a
 favourite. It does **not** collapse to one option, research, implement, verify, or
-ship. When a direction wins, hand the build off (`/verify`, `/code-review`); the
-HTML here is throwaway.
+ship. When a direction wins, hand it to the `build` skill (then `/verify` and
+`/code-review`); the HTML here is throwaway.
 
 ## Inputs
 
@@ -46,11 +46,11 @@ opened directly or via whatever one command the project already uses.
 
 ## Quietly mark the recommendation
 
-Form an opinion and surface it **understated**, inside the artifact, never as a
+Form an opinion and surface it **understated**, inside the artefact, never as a
 loud prose verdict:
 
 - A small, low-key marker on the favoured variant in the gallery (e.g. a muted
-  "Claude's pick" dot/badge) and **one** short line of rationale in small,
+  "Agent's pick" dot/badge) and **one** short line of rationale in small,
   low-contrast text.
 - **Do not** add a banner or modal, and **do not** reorder the pick to the front. It
   must be ignorable. The user is the design lead; this is a nudge, not a decision.
@@ -67,6 +67,6 @@ chooses one or edits toward it.
 That's the whole skill. Heavier steps (researching patterns first, implementing the
 winner for real, opening a PR with a screenshot) stay **at prompt time** when the
 user asks for them, exactly as a person would layer them on. They are deliberately
-not baked in. For building and shipping a chosen direction, use `/verify` and
-`/code-review`. The recommendation is the single opinion this skill expresses, and
-it expresses it quietly.
+not baked in. Hand a chosen direction to the `build` skill; `/verify` and
+`/code-review` check the result. The recommendation is the single opinion this
+skill expresses, and it expresses it quietly.
