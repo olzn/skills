@@ -1,6 +1,6 @@
 ---
 name: build
-description: Take a scoped request or chosen design direction (Paper, HTML, or Figma) to a verified candidate ready for the owner's local review — a gated implement-and-verify loop that runs pre-build-review before coding and post-build-review after, and never ships on its own. Use after your bootstrap workflow, after choosing a direction from prototype or paper-prototype, when continuing implementation, or when asked to build, implement, revise, or get a change ready for local review. Small UI papercuts take the shorter polish-fix path instead.
+description: Take a scoped request or chosen design direction (Paper (paper.design), HTML, or Figma) to a verified candidate ready for the owner's local review — a gated implement-and-verify loop that runs pre-build-review before coding and post-build-review after, and never ships on its own. Use after your bootstrap workflow, after choosing a direction from prototype or paper-prototype, when continuing implementation, or when asked to build, implement, revise, or get a change ready for local review. Small UI papercuts take the shorter polish-fix path instead.
 ---
 
 # Build a local candidate
@@ -8,6 +8,13 @@ description: Take a scoped request or chosen design direction (Paper, HTML, or F
 Your bootstrap workflow opens the lane. `build` owns the implementation and
 verification loop. Your ship workflow begins only after the owner reviews the
 running result and says go.
+
+## Assumes
+
+Two stages you supply: a **bootstrap step** that creates the dedicated
+worktree or checkout this skill requires, and a **ship step** that re-runs
+`scripts/tree-fingerprint`, compares against `.build-review.scratch.md`, and
+refuses to open a PR on a mismatch.
 
 Do not create a worktree, commit, push, open a PR, approve the interface on
 the owner's behalf, or invoke `grill-with-docs` automatically.
@@ -63,17 +70,21 @@ Run `pre-build-review` once the direction is settled.
 | `Go with changes` | Incorporate the required plan changes, then continue. |
 | `No-go` | Stop and return to the stage named by the review. |
 
-Do not implement around an unresolved blocker.
+Do not implement around an unresolved blocker. An explicit owner instruction
+to proceed past a `No-go` counts as `Go with changes` — record the override
+and its scope in the evidence file.
 
 ### 4. Implement
 
-Apply the `ui-craft` suite for user-facing frontend work and follow the
-nearest existing patterns. Build the smallest coherent change that satisfies
-the settled intent.
+For user-facing frontend work, apply the `ui-craft` suite (`suites/ui-craft`
+in this repo) when installed; otherwise follow the nearest existing patterns.
+Build the smallest coherent change that satisfies the settled intent.
 
 The owner runs the project's dev services; use the running preview and never
-launch a competing instance. Verify incrementally in proportion to the change,
-but leave the final gate to `post-build-review`.
+launch a competing instance. If no preview is running, ask the owner to start
+it, and record any browser checks that could not run as `not run`. Verify
+incrementally in proportion to the change, but leave the final gate to
+`post-build-review`.
 
 ### 5. Review and repair
 
@@ -98,7 +109,9 @@ before handoff.
 After `Pass` or `Pass with notes`, run this skill's
 `scripts/tree-fingerprint` and write `<worktree>/.build-review.scratch.md`
 (keep it out of version control — add it to `.git/info/exclude` if the
-project does not already ignore scratch files). Record:
+project does not already ignore scratch files). Ignoring the evidence file is
+a correctness requirement for any other fingerprint tooling; this skill's
+script skips it by name. Record:
 
 - `head` from `git rev-parse HEAD`.
 - `tree-fingerprint` from the script.
