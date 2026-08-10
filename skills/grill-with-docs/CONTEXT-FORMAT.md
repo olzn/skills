@@ -10,16 +10,16 @@
 ## Language
 
 **Order**:
-{A concise description of the term}
-_Avoid_: Purchase, transaction
+A customer's confirmed request for specific items.
+_Avoid_: purchase (names the act, not the record), transaction (collides with payment processing)
 
 **Invoice**:
 A request for payment sent to a customer after delivery.
-_Avoid_: Bill, payment request
+_Avoid_: bill (ambiguous between the document and the act of billing), payment request (describes the intent, not the artefact)
 
 **Customer**:
 A person or organization that places orders.
-_Avoid_: Client, buyer, account
+_Avoid_: client (synonym that adds nothing), buyer (names a role in one transaction), account (collides with the login account)
 
 ## Relationships
 
@@ -39,6 +39,7 @@ _Avoid_: Client, buyer, account
 ## Rules
 
 - **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others as aliases to avoid.
+- **Give every avoided alias its reason.** Name what displaces it — a collision with another concept, an overload from a neighbouring domain, a synonym that adds nothing: `_Avoid_: account (collides with the login account)`. An unexplained alias invites relitigating the choice.
 - **Flag conflicts explicitly.** If a term is used ambiguously, call it out in "Flagged ambiguities" with a clear resolution.
 - **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
 - **Show relationships.** Use bold term names and express cardinality where obvious.
@@ -72,6 +73,7 @@ The skill infers which structure applies:
 
 - If `CONTEXT-MAP.md` exists, read it to find contexts
 - If only a root `CONTEXT.md` exists, single context
-- If neither exists, create a root `CONTEXT.md` lazily when the first term is resolved
+- If the repo keeps canonical terms in a differently named root glossary, treat that file as the context glossary — extend it rather than creating a parallel `CONTEXT.md`
+- If none of these exists, create a root `CONTEXT.md` lazily when the first term is resolved
 
 When multiple contexts exist, infer which one the current topic relates to. If unclear, ask.

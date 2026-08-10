@@ -17,7 +17,7 @@ If a question can be answered by exploring the codebase, explore the codebase in
 
 ## Domain awareness
 
-During codebase exploration, also look for existing documentation:
+Before proposing any term, detect the repo's existing canonical doc system — you are challenging against it, not against a blank page. Look for a root glossary (`CONTEXT.md` or an equivalent repo-wide glossary file), an established ADR directory, and per-directory agent or context docs that carry local conventions and invariants. Read what exists before the first question.
 
 ### File structure
 
@@ -49,13 +49,17 @@ If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The ma
 │       └── docs/adr/
 ```
 
-Create files lazily, only when you have something to write. If no `CONTEXT.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
+Create files lazily, only when you have something to write. If no glossary exists anywhere, create a root `CONTEXT.md` when the first term is resolved. If no ADR home exists, create `docs/adr/` when the first ADR is needed.
+
+### Don't fork the canon
+
+Never create a competing `CONTEXT.md` or a parallel `docs/adr/` when the repo already has a canonical glossary or ADR home under another name — a second glossary forks the first. Extend the existing system instead. A decision that belongs to a wider system with its own owned docs routes through that system's owners as a separate change: flag it, don't quietly file it.
 
 ## During the session
 
 ### Challenge against the glossary
 
-When the user uses a term that conflicts with the existing language in `CONTEXT.md`, call it out immediately. "Your glossary defines 'cancellation' as X, but you seem to mean Y. Which is it?"
+When the user uses a term that conflicts with the existing language in `CONTEXT.md` or any repo-wide glossary, call it out immediately. "Your glossary defines 'cancellation' as X, but you seem to mean Y. Which is it?"
 
 ### Sharpen fuzzy language
 
@@ -85,4 +89,12 @@ Only offer to create an ADR when all three are true:
 
 If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](./ADR-FORMAT.md).
 
+## Closing the session
+
+When grilling was entered from a larger planning or build workflow (the `build` skill, a `pre-build-review` no-go, your own planning loop), end by stating what the session settled — terms resolved, decisions recorded, questions still open — and hand back to the invoking workflow. Do not drift into implementation.
+
 </supporting-info>
+
+## Credits
+
+Derived from and building on Matt Pocock's MIT-licensed skills ([github.com/mattpocock/skills](https://github.com/mattpocock/skills)): `grill-with-docs`, `grilling`, and `domain-modeling`.
