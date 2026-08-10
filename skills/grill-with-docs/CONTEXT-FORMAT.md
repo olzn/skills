@@ -18,7 +18,7 @@ A request for payment sent to a customer after delivery.
 _Avoid_: bill (ambiguous between the document and the act of billing), payment request (describes the intent, not the artefact)
 
 **Customer**:
-A person or organization that places orders.
+A person or organisation that places orders.
 _Avoid_: client (synonym that adds nothing), buyer (names a role in one transaction), account (collides with the login account)
 
 ## Relationships

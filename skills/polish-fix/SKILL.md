@@ -20,9 +20,8 @@ decision, it isn't a polish fix; stop and treat it as real work.
 2. **Make the minimal change.** Touch the fewest lines that resolve it. Match the
    surrounding code and tokens: no new abstractions, no drive-by edits, no scope
    creep into nearby nits (those are *separate* polish fixes).
-3. **Capture before/after.** Use the `before-and-after` skill to screenshot the
-   element or page in both states, so the PR is reviewable at a glance without
-   anyone running it.
+3. **Capture before/after.** Screenshot the element or page in both states, so
+   the PR is reviewable at a glance without anyone running it.
 4. **Open a small PR.** Branch, commit (end the message with the project's
    `Co-Authored-By` line if one is configured), and open a PR whose body is just the
    one-line description plus the before/after images. Title it so a reviewer can

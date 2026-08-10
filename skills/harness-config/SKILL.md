@@ -1,6 +1,6 @@
 ---
 name: harness-config
-description: Keep agent configuration — instructions, skills, commands, agents, MCP registrations, hooks, and permissions — aligned across more than one agent harness (e.g. Claude Code + Codex) from a single canonical config repo. Use when changing personal or repository agent configuration, migrating a workflow between harnesses, diagnosing configuration drift, or asking whether a capability will propagate from one harness to another.
+description: Keep agent configuration — instructions, skills, commands, agents, MCP registrations, hooks, permissions, and reusable prompts — aligned across more than one agent harness (e.g. Claude Code + Codex) from a single canonical config repo. Use when changing personal or repository agent configuration, migrating a workflow between harnesses, diagnosing configuration drift, or asking whether a capability will propagate from one harness to another.
 ---
 
 # Harness Configuration
