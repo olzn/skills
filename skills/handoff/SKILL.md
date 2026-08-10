@@ -18,8 +18,13 @@ Include only what the next session actually needs:
 - **State** — what is done, what is in progress, what has not been started.
 - **Next step** — the single most concrete thing to do next.
 - **Key decisions** — choices already made and *why*, so they are not relitigated.
+  Attribute each one: confirmed by the user, an agent assumption (say so), or
+  recorded elsewhere (link the PR/ADR/doc). Ideas only discussed are not
+  decisions; they belong under open questions.
 - **Open questions and gotchas** — blockers, risks, and anything surprising.
 - **Where to resume** — the exact files, paths, commands, or URLs to pick up from.
+- **Previous handoff** — if this session resumed from one, link it rather than
+  re-summarising it; each re-synthesis loses fidelity and provenance.
 
 Do not duplicate content already captured in other artefacts (PRDs, plans, ADRs,
 issues, commits, diffs).
