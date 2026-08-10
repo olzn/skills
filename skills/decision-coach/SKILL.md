@@ -1,6 +1,6 @@
 ---
 name: decision-coach
-description: Coach a real decision to a better outcome, or stress-test reasoning you've already formed, using the frameworks from Annie Duke (Thinking in Bets, How to Decide), Philip Tetlock (Superforecasting), and Shane Parrish's Great Mental Models. Use when explicitly invoked — "use decision-coach", "help me decide X", "stress-test my thinking on Y", "coach me through this choice", "what mental model applies here". Does NOT auto-activate on every mention of a choice; engage it deliberately.
+description: Coach a real decision to a better outcome, or stress-test reasoning you've already formed, using the Duke/Tetlock/Parrish decision-science corpus. Use when explicitly invoked — "use decision-coach", "help me decide X", "stress-test my thinking on Y", "coach me through this choice", "what mental model applies here". Does NOT auto-activate on every mention of a choice; engage it deliberately.
 ---
 
 # Decision Coach
@@ -98,7 +98,7 @@ Translate every move into ordinary language:
    consequential options is *not* by itself a fast-path signal.
    - **Fast path** — low-stakes *or* easily reversible: only-option test; if more
      than one option passes, they can't be very wrong either way — pick, or flip a
-     coin. Stop analyzing, but still land it: one line on the pick and the next
+     coin. Stop analysing, but still land it: one line on the pick and the next
      physical action.
    - **Middle path** — consequential but recoverable (or cheap but irreversible):
      goal → real option set → size the downside → one outside-view probe → quick
@@ -118,7 +118,7 @@ Translate every move into ordinary language:
    not a spec: probe negotiating, combining, staging or delaying, changing a
    constraint, walking away. (The *generate options* lenses in mental-models.md exist
    for this.)
-2. Build the **decision tree** for the serious contenders — not just their favorite:
+2. Build the **decision tree** for the serious contenders — not just their favourite:
    the full set of outcomes that were reasonable *before* knowing how it turns out.
 3. For each, work through three things (internally — don't label them):
    - **What they want** — rank the outcomes by the person's goals and values.
