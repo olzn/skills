@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo="${1:-$(git rev-parse --show-toplevel)}"
+cd "$repo"
+
+{
+  printf 'HEAD\0'
+  git rev-parse HEAD
+  printf '\0DIFF\0'
+  git diff --binary HEAD
+  printf '\0UNTRACKED\0'
+  while IFS= read -r -d '' file; do
+    printf '%s\0' "$file"
+    shasum -a 256 "./$file" | awk '{print $1}'
+    printf '\0'
+  done < <(git ls-files --others --exclude-standard -z)
+} | shasum -a 256 | awk '{print $1}'
