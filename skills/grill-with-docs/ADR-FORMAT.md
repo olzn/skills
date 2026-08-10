@@ -1,6 +1,6 @@
 # ADR Format
 
-ADRs live in `docs/adr/` and use sequential numbering: `0001-slug.md`, `0002-slug.md`, etc.
+When the repo has no existing ADR home, use `docs/adr/` with sequential numbering: `0001-slug.md`, `0002-slug.md`, etc.
 
 If the repo — or a wider system this work sits inside — already has an established ADR directory, decisions that belong to that system are not yours to file: they go through that directory's owners and numbering. Flag the decision; don't quietly file it here.
 

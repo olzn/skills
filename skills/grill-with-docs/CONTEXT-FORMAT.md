@@ -21,6 +21,9 @@ _Avoid_: bill (ambiguous between the document and the act of billing), payment r
 A person or organisation that places orders.
 _Avoid_: client (synonym that adds nothing), buyer (names a role in one transaction), account (collides with the login account)
 
+**Fulfilment**:
+The picking, packing, and dispatch of an **Order**'s items.
+
 ## Relationships
 
 - An **Order** produces one or more **Invoices**
@@ -29,7 +32,7 @@ _Avoid_: client (synonym that adds nothing), buyer (names a role in one transact
 ## Example dialogue
 
 > **Dev:** "When a **Customer** places an **Order**, do we create the **Invoice** immediately?"
-> **Domain expert:** "No, an **Invoice** is only generated once a **Fulfillment** is confirmed."
+> **Domain expert:** "No, an **Invoice** is only generated once a **Fulfilment** is confirmed."
 
 ## Flagged ambiguities
 
@@ -60,12 +63,12 @@ _Avoid_: client (synonym that adds nothing), buyer (names a role in one transact
 
 - [Ordering](./src/ordering/CONTEXT.md): receives and tracks customer orders
 - [Billing](./src/billing/CONTEXT.md): generates invoices and processes payments
-- [Fulfillment](./src/fulfillment/CONTEXT.md): manages warehouse picking and shipping
+- [Fulfilment](./src/fulfilment/CONTEXT.md): manages warehouse picking and shipping
 
 ## Relationships
 
-- **Ordering → Fulfillment**: Ordering emits `OrderPlaced` events; Fulfillment consumes them to start picking
-- **Fulfillment → Billing**: Fulfillment emits `ShipmentDispatched` events; Billing consumes them to generate invoices
+- **Ordering → Fulfilment**: Ordering emits `OrderPlaced` events; Fulfilment consumes them to start picking
+- **Fulfilment → Billing**: Fulfilment emits `ShipmentDispatched` events; Billing consumes them to generate invoices
 - **Ordering ↔ Billing**: Shared types for `CustomerId` and `Money`
 ```
 
