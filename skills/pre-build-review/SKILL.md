@@ -1,6 +1,6 @@
 ---
 name: pre-build-review
-description: Run a pre-implementation plan review that attacks a settled product, UI, or technical plan for blockers, missing states, edge cases, accessibility gaps, mobile failures, awkward data assumptions, and implementation ambiguity. Use before coding after grill-with-docs, paper-prototype, a design decision, prototype, PRD, brief, or implementation plan, especially when the user asks to red-team, sanity-check, review, or decide go/no-go before build.
+description: Run a pre-implementation plan review that attacks a settled product, UI, or technical plan for blockers, missing states, edge cases, accessibility gaps, mobile failures, awkward data assumptions, and implementation ambiguity. Invoked automatically by the build skill before implementation, and available manually before coding after grill-with-docs, paper-prototype, a design decision, prototype, PRD, brief, or implementation plan, especially when the user asks to red-team, sanity-check, review, or decide go/no-go before build.
 ---
 
 # Pre-build Review
@@ -31,6 +31,7 @@ Ask a concise question only when the missing context makes the go/no-go decision
    - Interaction and responsive behaviour: mobile, keyboard, focus, hover-only affordances, touch targets, interruption, and recovery.
    - Accessibility: semantics, labels, contrast, reduced motion, screen reader flow, and visible focus.
    - Technical fit: integration points, existing patterns, dependencies, migration risk, test surface, and deployment constraints.
+   - Coherence: the plan must name the pattern it extends, the task it improves, the states it adds, and the complexity it removes or justifies.
    - Product feel: copy, feedback, pacing, affordance clarity, and whether the result will feel generated or considered.
 4. Decide whether to proceed.
 
