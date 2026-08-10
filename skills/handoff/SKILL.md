@@ -30,8 +30,8 @@ Do not duplicate content already captured in other artefacts (PRDs, plans, ADRs,
 issues, commits, diffs).
 Reference them by path or URL instead.
 
-If the user passed arguments, treat them as a description of what the next session
-will focus on and tailor the document accordingly.
+If the invocation included a focus (arguments or an accompanying instruction),
+tailor the document to it.
 Suggest the skills the next session should use, if any.
 
 ## Saving the document
@@ -46,6 +46,9 @@ path="$dir/handoff-$(date +%Y%m%d-%H%M%S).md"
 echo "$path"
 ```
 
+If the goal or the invocation arguments suggest a short topic slug, insert it
+before the timestamp — `handoff-<slug>-YYYYMMDD-HHMMSS.md`; the plain timestamp
+form is the fallback.
 Write the document to that path and print it as the final step.
 
 `$HANDOFF_DIR` lets any environment redirect handoffs without editing the skill.

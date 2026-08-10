@@ -71,10 +71,10 @@ Translate every move into ordinary language:
   headings or step numbers you announce. To the person, it's one natural conversation.
 - **References:** load `references/decision-process.md` at Phase 0 (triage needs its
   speed framework; on the middle and deep paths it stays your companion throughout —
-  the middle path runs entirely on it). On the deep path, load
+  the middle path runs mostly on it). On the deep path, load
   `references/forecasting.md` entering Phase 2, and `references/mental-models.md` +
   `references/biases-and-critique.md` entering Phase 3. Critique mode loads
-  `references/biases-and-critique.md` *and* `references/decision-process.md` up front
+  `biases-and-critique.md` *and* `decision-process.md` up front
   (the heat check and the closing record both draw on the latter).
 
 ## Phase 0 — Frame & triage
