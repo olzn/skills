@@ -6,6 +6,8 @@ Personal agent skills for design and product work.
 
 ```text
 skills/
+├── docs/
+├── link.sh
 ├── skills/
 │   ├── grill-with-docs/
 │   ├── prototype/
@@ -33,6 +35,7 @@ skills/
         └── hig-review/
 ```
 
+- [`docs/`](docs/) contains the design plans, research, and specs behind the skills.
 - [`skills/`](skills/) contains independently installable single skills.
 - [`suites/`](suites/) contains larger composed skill systems.
 
@@ -65,7 +68,10 @@ without reinstalling:
 sh link.sh
 ```
 
-This links into `~/.claude/skills`, `~/.codex/skills`, and `~/.agents/skills`.
+This links into `~/.claude/skills`, `~/.codex/skills`, and `~/.agents/skills`,
+skipping any target whose parent directory (`~/.claude`, `~/.codex`, `~/.agents`)
+doesn't exist. If a target already contains a real directory or file with a
+skill's name, `link.sh` skips it with a warning; set `FORCE=1` to replace it.
 
 The first two are each harness's own discovery folder. `~/.agents/skills` is
 different: it is a harness-neutral home for agent configuration, so skills
@@ -81,9 +87,12 @@ Target a single directory with `TARGET_DIR`:
 TARGET_DIR=.claude/skills sh link.sh
 ```
 
-Re-run only when you add a new standalone skill; edits to existing skills are live
+Re-run when you add, rename, or remove a standalone skill (re-running also
+prunes stale links); edits to existing skills are live
 through the symlinks. The `ui-craft` suite is copy-installed, so re-run after changing
-the suite.
+the suite; it also places four shared reference `.md` files at the root of the skills
+directory, which its skills read via relative paths. The `hig` suite installs
+separately: `sh suites/hig/install.sh` (same `TARGET_DIR` contract).
 
 ## Installing UI Craft
 
@@ -115,24 +124,15 @@ sh suites/ui-craft/install.sh
 
 ## Installing a Standalone Skill
 
-Install a skill directly from GitHub:
+Copy or symlink the skill directory into your agent's skills folder —
+`~/.claude/skills`, `~/.codex/skills`, or a shared tree like `~/.agents/skills`:
 
 ```sh
-python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-  --url https://github.com/olzn/skills/tree/main/skills/paper-prototype
+git clone https://github.com/olzn/skills.git
+ln -s "$(pwd)/skills/skills/paper-prototype" ~/.claude/skills/paper-prototype
 ```
 
 Replace `paper-prototype` with any standalone skill directory, such as `pre-build-review`.
-
-Or clone this repository, then add it to pi settings:
-
-```json
-{
-  "skills": ["/path/to/skills/skills/paper-prototype"]
-}
-```
-
-You can also copy a skill directory into a discovered skill location, such as `~/.codex/skills/` or `~/.agents/skills/`.
 
 ## Validation
 
