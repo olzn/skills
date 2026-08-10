@@ -97,3 +97,5 @@ The answer is the only thing worth keeping from a prototype. Summarise:
 - what should happen next
 
 Label the winning Paper frame and add a concise decision note on the canvas. If the work affects durable product/domain decisions, update `CONTEXT.md` or an ADR separately.
+
+The chosen direction hands off to your implementation step (the `build` skill, if you use it) — the labelled frame and its decision note are what it reads.
