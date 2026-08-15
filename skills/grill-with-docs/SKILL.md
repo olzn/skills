@@ -5,11 +5,21 @@ description: Grilling session that challenges your plan against the existing dom
 
 <what-to-do>
 
-Interview the user relentlessly about every aspect of their plan until you reach a shared understanding. If no plan has been stated yet, ask for it first. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. For each question, provide your recommended answer.
+Interview the user relentlessly about every aspect of their plan until you reach a shared understanding. If no plan has been stated yet, ask for it first. Map it as a **design tree**: every decision branches into the decisions that hang off it.
 
-Ask the questions one at a time, waiting for the user's feedback on each question before continuing.
+Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask *now* without guessing at answers you haven't heard yet. Ask the whole frontier in one round, then wait for the user's answers before the next round. Format each question:
 
-If a question can be answered by exploring the codebase, explore the codebase instead.
+```
+❓ **Q1** - **<question title>**: <question body, may be multiple paragraphs, including multiple choices>
+
+➡️ <your recommended answer>
+```
+
+Each round of answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a *later* round, not this one.
+
+Finding *facts* is your job, never the user's. When a frontier question needs a fact from the environment (codebase, docs, tools), dispatch a sub-agent to find it; don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report; ask the rest of the frontier now. The *decisions* are the user's: put each to them and wait.
+
+The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed. Do not act on the plan until the user confirms you have reached a shared understanding.
 
 </what-to-do>
 
@@ -87,8 +97,8 @@ Only offer to create an ADR when the decision passes the three-part test in [ADR
 
 When grilling was entered from a larger planning or build workflow (the `build` skill, a `pre-build-review` no-go, your own planning loop), end by stating what the session settled — terms resolved, decisions recorded, questions still open — and hand back to the invoking workflow. Do not drift into implementation.
 
-</supporting-info>
-
 ## Credits
 
 Derived from and building on Matt Pocock's MIT-licensed skills ([github.com/mattpocock/skills](https://github.com/mattpocock/skills)): `grill-with-docs`, `grilling`, and `domain-modeling`; upstream licence in [LICENSE-upstream](./LICENSE-upstream).
+
+</supporting-info>

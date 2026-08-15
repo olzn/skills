@@ -16,7 +16,8 @@ post-build reviews check the result; the HTML here is throwaway.
 - **Feature** (required): what you're prototyping, however loosely phrased
   ("prototype the autocomplete dropdown", "try a few designs for the empty state").
 - **N** (optional, **default 5**): how many implementations to generate. Honour an
-  explicit count ("prototype 3 options...").
+  explicit count ("prototype 3 options...") up to a ceiling of 5 — past that,
+  variants stop being radically different and start being noise; say so and cap.
 
 If the feature is genuinely unclear, ask one tight question. Otherwise proceed.
 
@@ -24,7 +25,7 @@ If the feature is genuinely unclear, ask one tight question. Otherwise proceed.
 
 Produce `N` **self-contained, single-file HTML** files (inline CSS/JS, no build
 step, openable directly in a browser), each a genuinely *different* implementation
-of the feature. Three rules keep the set useful:
+of the feature. Four rules keep the set useful:
 
 1. **Anti-wallpaper guard.** Variants must differ *structurally* (layout,
    hierarchy, interaction model), not be the same thing recoloured. If it helps,
@@ -38,6 +39,10 @@ of the feature. Three rules keep the set useful:
    long strings, empty and error states, narrow widths, keyboard focus. The point
    of a real preview is to surface problems a static mockup hides, while you're
    still choosing.
+4. **Judge in context, not in a vacuum.** A variant floating on a blank page always
+   looks fine. Reproduce the host surface around each option — the real header,
+   sidebar, neighbouring content, and density of the page it would live in — so
+   the options compete against the app, not against whitespace.
 
 ## Preview
 
@@ -46,6 +51,18 @@ there is a single surface to look through. Write the `N` files and the gallery t
 gitignored scratch or temp directory, never committed and never left polluting
 `git status`. Print the file paths too, so they can be opened directly or with
 whatever preview command the project already uses.
+
+State the design question in one visible line at the top of the gallery, next to
+the named axis of variation, so the comparison can be checked later — by the
+user, or by whoever opens it cold.
+
+Give the gallery a **compare mode**: embed the variants in one frame and cycle
+them in place with ←/→ (wrapping around; ignore arrow keys while an input,
+textarea, or contenteditable element has focus). Label the frame with the current
+variant's key and name (e.g. "3 — Sidebar layout") and reflect it in
+`location.hash`, so what's on screen is nameable and a reload lands on the same
+variant. Flipping variants in the same viewport position exposes structural
+differences that a serial gallery of links hides.
 
 ## Quietly mark the recommendation
 
@@ -64,6 +81,15 @@ loud prose verdict:
 Refine on request; a few passes is normal. The user drives and owns the decision.
 Never auto-collapse to the recommended option; only consolidate when the user
 chooses one or edits toward it.
+
+## Capture on hand-off
+
+When a direction wins, don't bin the exploration. Copy the variant set, the
+gallery, and a one-line verdict (which option won and why) to a durable notes or
+artefacts location outside the repo — wherever the project keeps design
+decisions — and leave a pointer wherever the implementation is tracked. The
+losing options and the rationale are the primary source for "why does it look
+like this"; the winner alone can't answer that.
 
 ## Scope
 
