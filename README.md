@@ -11,6 +11,7 @@ skills/
 ├── skills/
 │   ├── grill-with-docs/
 │   ├── prototype/
+│   ├── logic-prototype/
 │   ├── paper-prototype/
 │   ├── pre-build-review/
 │   ├── build/
@@ -19,7 +20,8 @@ skills/
 │   ├── polish-fix/
 │   ├── decision-coach/
 │   ├── handoff/
-│   └── harness-config/
+│   ├── harness-config/
+│   └── writing-for-agents/
 └── suites/
     ├── ui-craft/
     │   ├── install.sh
@@ -43,6 +45,7 @@ skills/
 
 - [`grill-with-docs`](skills/grill-with-docs/) - Grill a plan against the existing domain model, sharpen fuzzy terminology into canonical terms, and capture them in CONTEXT.md and ADRs as decisions crystallise. Stage 1 of the design pipeline. Derived from Matt Pocock's MIT-licensed [`grill-with-docs`, `grilling`, and `domain-modeling` skills](https://github.com/mattpocock/skills).
 - [`prototype`](skills/prototype/) - Generate N different single-file HTML implementations of a UI feature, preview them in a gallery, and iterate. Quietly flags a favourite inside the preview; deliberately does not pick a winner, research, implement, verify, or open a PR.
+- [`logic-prototype`](skills/logic-prototype/) - Build a single-file HTML demo that answers whether a state model, business logic, or data shape feels right: a pure liftable module driven by free-play buttons and tabbed guided walkthroughs a non-developer can click through. Derived from Matt Pocock's MIT-licensed [`prototype` skill](https://github.com/mattpocock/skills) (`LOGIC.md` branch).
 - [`paper-prototype`](skills/paper-prototype/) - Create Paper-first UI prototype directions, especially after `grill-with-docs` has settled product and domain decisions. Use it to turn open interface questions into editable Paper artboards before committing to implementation.
 - [`pre-build-review`](skills/pre-build-review/) - Run a direct pre-implementation review for blockers, missing states, accessibility and mobile gaps, awkward data assumptions, and implementation ambiguity.
 - [`build`](skills/build/) - Take a scoped request or chosen design direction (Paper, HTML, or Figma) to a verified candidate ready for the owner's local review. Implementation is bracketed by `pre-build-review` and `post-build-review`, and the reviewed tree is fingerprinted so the ship step can prove what was reviewed is what ships. Never self-ships.
@@ -52,6 +55,7 @@ skills/
 - [`decision-coach`](skills/decision-coach/) - Coach a real decision, or stress-test reasoning you've already formed, grounded in Annie Duke, Philip Tetlock, and Shane Parrish's Great Mental Models. Routes each decision by stakes and reversibility onto a fast, middle, or deep path (the deep path runs the full frame → map → calibrate → stress-test → decide & protect process). Explicitly invoked.
 - [`handoff`](skills/handoff/) - Compact the current conversation into a single Markdown handoff another session or agent can resume from, saved to a durable, harness-agnostic path (`$HANDOFF_DIR`, default `~/handoffs`) with a timestamped name. Captures goal, state, next step, and where to resume, not a transcript.
 - [`harness-config`](skills/harness-config/) - Keep agent configuration — instructions, skills, commands, agents, MCP registrations, hooks, and permissions — aligned across more than one harness (e.g. Claude Code and Codex) from a single canonical source, with generated per-harness projections you never edit by hand.
+- [`writing-for-agents`](skills/writing-for-agents/) - Reference for writing any document an agent consumes — skills, `AGENTS.md`/`CLAUDE.md`, pointer-reached docs: context pointers, the two loads, information hierarchy, completion criteria, leading words, and pruning, with a skill-mechanics branch for frontmatter and invocation choice. Adapted from Matt Pocock's MIT-licensed [`writing-for-agents`](https://github.com/mattpocock/skills).
 
 ## Suites
 

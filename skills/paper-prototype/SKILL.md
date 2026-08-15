@@ -1,6 +1,6 @@
 ---
 name: paper-prototype
-description: Create Paper-first UI prototype directions, especially after grill-with-docs has settled product and domain decisions. Use to explore layout, hierarchy, density, flow, or visual framing as editable Paper artboards before committing to code, to compare structurally distinct directions, or to turn settled product decisions into an interface. For throwaway HTML explorations rather than editable Paper frames, use the prototype skill instead. Do not use for business-logic or state-machine prototyping unless the user explicitly asks for Paper output.
+description: Create Paper-first UI prototype directions, especially after grill-with-docs has settled product and domain decisions. Use to explore layout, hierarchy, density, flow, or visual framing as editable Paper artboards before committing to code, to compare structurally distinct directions, or to turn settled product decisions into an interface. For throwaway HTML explorations rather than editable Paper frames, use the prototype skill instead. For business-logic or state-machine prototyping use logic-prototype, unless the user explicitly asks for Paper output.
 ---
 
 # Paper Prototype

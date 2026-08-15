@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: Generate N different HTML implementations of a UI feature, preview them, and iterate a few times, a fast "show me the options" loop for exploring what a feature could look like. Default N is 5. Use when the user wants to prototype a UI, explore or compare designs for a feature, says "prototype this", "try a few designs", "explore some options for X", "what could this look like", or hands over a feature with no spec. Marks a quiet pick but does NOT collapse to one winner, research, implement, verify, or open a PR; a chosen direction hands off to the build skill, whose review gates check the result. For editable Paper artboards rather than throwaway HTML, use paper-prototype instead.
+description: Generate N different HTML implementations of a UI feature, preview them, and iterate a few times, a fast "show me the options" loop for exploring what a feature could look like. Default N is 5. Use when the user wants to prototype a UI, explore or compare designs for a feature, says "prototype this", "try a few designs", "explore some options for X", "what could this look like", or hands over a feature with no spec. Marks a quiet pick but does NOT collapse to one winner, research, implement, verify, or open a PR; a chosen direction hands off to the build skill, whose review gates check the result. For editable Paper artboards rather than throwaway HTML, use paper-prototype instead; for whether a state model, business logic, or data shape feels right, use logic-prototype.
 ---
 
 # Prototype
