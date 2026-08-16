@@ -1,12 +1,16 @@
 #!/bin/sh
-# Link this repo's standalone skills into an agent skills directory and install the
-# ui-craft suite there, so this repo is the single source of truth.
+# Installer for consumers of this library: link the standalone skills into an
+# agent skills directory and install the ui-craft suite there.
 #
-# Standalone skills are SYMLINKED, so editing the repo updates every linked location
-# instantly, with no reinstall. Re-run when you add, rename, or remove a
-# standalone skill (re-running also prunes stale links).
-# The ui-craft suite is copy-installed via its own installer, so re-run after changing
-# the suite.
+# Standalone skills are SYMLINKED, so pulling the repo updates every linked
+# location instantly, with no reinstall. Re-run when a pull adds, renames, or
+# removes a standalone skill (re-running also prunes stale links).
+# The ui-craft suite is copy-installed via its own installer, so re-run after
+# it changes.
+#
+# Maintainer note: this repo publishes genericised snapshots. The canonical,
+# personalised skills live in a private config tree and are exported here by
+# its `publish-skill` helper — do not treat this repo as the editing source.
 #
 # Usage:
 #   sh link.sh                             # link into ~/.claude/skills, ~/.codex/skills,
@@ -71,4 +75,4 @@ else
   done
 fi
 
-echo "Done. Standalone skills are symlinked to the repo; edits are picked up automatically."
+echo "Done. Standalone skills are symlinked to the repo; pulls are picked up automatically."

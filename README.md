@@ -2,6 +2,11 @@
 
 Personal agent skills for design and product work.
 
+These are published snapshots. The canonical copies live in a private
+configuration tree and are exported here with personal paths and workflow
+references genericised, so this repo can lag its sources between publishes.
+Substantive fixes land on the next publish; edits made here do not flow back.
+
 ## Repository Structure
 
 ```text
@@ -65,8 +70,8 @@ skills/
 ## Installing everything (linked)
 
 Symlink every standalone skill into your agent skills folders and install the
-`ui-craft` suite, so this repo is the single source of truth and edits are picked up
-without reinstalling:
+`ui-craft` suite, so a `git pull` updates every linked location without
+reinstalling:
 
 ```sh
 sh link.sh
